@@ -1,0 +1,406 @@
+<ul class="site-nav front-view" id="accessibleNav">
+  {% unless linklists.main-menu.links.first.url == '/' %}
+  <li class="large--hide">
+    <a href="/">{{ 'general.breadcrumbs.home' | t }}</a>
+  </li>
+  {% endunless %}
+     {% for link in linklists.main-menu.links %}
+    {% assign child_list_handle = link.title | handleize %}
+      {% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 %}
+          <li class="site-nav--has-dropdown{% if link.active %} site-nav--active{% endif %}" aria-haspopup="true">
+            <a href="{{ link.url }}">
+              {{ link.title }}
+              <span class="icon-fallback-text">
+                <span class="icon icon-arrow-down" aria-hidden="true"></span>
+              </span>
+            </a>
+                <div class="site-nav--dropdown nav-main">
+                  <ul class="nav-inner">
+                  {% assign abc = 0 %}
+
+                {% for child_link in linklists[child_list_handle].links %}
+                {% assign grand_child_list_handle = child_link.title | handle %}
+                {% assign abc = abc | plus: linklists[grand_child_list_handle].links.size %}
+                {% if abc <=12 %}
+                      {% if linklists[grand_child_list_handle] and linklists[grand_child_list_handle].links.size > 0 %}
+                <li class="">
+                  <span class="category-title">{{ child_link.title | link_to: child_link.url }}</span>
+                 </li>
+                  <!-- <ul>-->
+
+                    {% for grand_child_link in linklists[grand_child_list_handle].links %}
+                    <li class="">
+                      {{ grand_child_link.title | link_to: grand_child_link.url }}
+                    </li>
+                    {% endfor %}
+                  <!--  </ul> 
+                </li>-->
+                {% else %}
+                <li class="category-title">
+                  {{ child_link.title | link_to: child_link.url }}
+                </li>
+                {% endif %}
+
+                  {% else %}
+                  {% assign abc = linklists[grand_child_list_handle].links.size %}
+                  {% if linklists[grand_child_list_handle] and linklists[grand_child_list_handle].links.size > 0 %}
+                <li class="">
+                  <span class="category-title">{{ child_link.title | link_to: child_link.url }}</span>
+                </li>  
+                 <!-- <ul>-->
+                    {% for grand_child_link in linklists[grand_child_list_handle].links %}
+                    <li class="">
+                      {{ grand_child_link.title | link_to: grand_child_link.url }}
+                    </li>
+                    {% endfor %}
+                  <!--</ul>
+                  </li>-->
+
+                {% else %}
+                <li class="category-title">
+                  {{ child_link.title | link_to: child_link.url }}
+                </li>
+                {% endif %}
+                {% endif %}
+
+
+                {% if linklists[grand_child_list_handle] and linklists[grand_child_list_handle].links.size > 0 %}
+
+
+
+                {% else %}
+
+                {% endif %}
+                {% endfor %}
+            </ul>
+                </div>
+         </li>
+    {% else %}
+      <li {% if link.active %}class="site-nav--active"{% endif %}>
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      </li>
+    {% endif %}
+  {% endfor %}
+
+  {% if shop.customer_accounts_enabled %}
+    {% if customer %}
+      <li class="customer-navlink large--hide"><a href="/account">{{ 'layout.customer.view_account' | t }}</a></li>
+      <li class="customer-navlink large--hide">{{ 'layout.customer.log_out' | t | customer_logout_link }}</li>
+    {% else %}
+      <li class="customer-navlink large--hide">{{ 'layout.customer.sign_in' | t | customer_login_link }}</li>
+      <li class="customer-navlink large--hide">{{ 'layout.customer.create_account' | t | customer_register_link }}</li>
+    {% endif %}
+  {% endif %}
+</ul>
+
+
+<!-- for mobile view start -->
+
+
+<ul class="site-nav mobile-view" id="accessibleNav">
+  {% unless linklists.main-menu.links.first.url == '/' %}
+  <li class="large--hide">
+    <a href="/">{{ 'general.breadcrumbs.home' | t }}</a>
+  </li>
+  {% endunless %}
+     {% for link in linklists.main-menu.links %}
+    {% assign child_list_handle = link.title | handleize %}
+      {% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 %}
+        <li class="site-nav--has-dropdown{% if link.active %} site-nav--active{% endif %}" aria-haspopup="true">
+          <a href="{{ link.url }}">
+            {{ link.title }}
+            <span class="icon-fallback-text">
+              <span class="icon icon-arrow-down" aria-hidden="true"></span>
+            </span>
+          </a>
+              <div class="site-nav--dropdown nav-main">
+                <ul class="nav-inner">
+              	{% assign abc = 0 %}
+
+              {% for child_link in linklists[child_list_handle].links %}
+              {% assign grand_child_list_handle = child_link.title | handle %}
+              {% assign abc = abc | plus: linklists[grand_child_list_handle].links.size %}
+              {% if abc <=12 %}
+              		{% if linklists[grand_child_list_handle] and linklists[grand_child_list_handle].links.size > 0 %}
+              <li class="site-nav--has-dropdown show-class">
+                <span class="category-title">{{ child_link.title | link_to: child_link.url }} <span class="plusminus">+</span> </span>
+               
+               <ul class="nav-inner">
+                
+                  {% for grand_child_link in linklists[grand_child_list_handle].links %}
+                  <li class="site-nav--has-dropdown show-class custom-click">
+                    {{ grand_child_link.title | link_to: grand_child_link.url }}
+                  </li>
+                  {% endfor %}
+                </ul> 
+              </li>
+              {% else %}
+              <li class="category-title custom-click">
+                {{ child_link.title | link_to: child_link.url }}
+              </li>
+              {% endif %}
+              		
+              	{% else %}
+              	{% assign abc = linklists[grand_child_list_handle].links.size %}
+              	{% if linklists[grand_child_list_handle] and linklists[grand_child_list_handle].links.size > 0 %}
+              <li class="site-nav--has-dropdown show-class custom-click">
+                <span class="category-title">{{ child_link.title | link_to: child_link.url }} <span class="plusminus">+</span></span>
+             
+               <ul>
+                  {% for grand_child_link in linklists[grand_child_list_handle].links %}
+                  <li class="custom-click">
+                    {{ grand_child_link.title | link_to: grand_child_link.url }}
+                  </li>
+                  {% endfor %}
+              </ul>
+				</li>
+              
+              {% else %}
+              <li class="category-title custom-click">
+                {{ child_link.title | link_to: child_link.url }}
+              </li>
+              {% endif %}
+              {% endif %}
+              
+              
+              {% if linklists[grand_child_list_handle] and linklists[grand_child_list_handle].links.size > 0 %}
+              
+              
+              
+              {% else %}
+             
+              {% endif %}
+              {% endfor %}
+          </ul>
+              </div>
+       </li>
+    {% else %}
+      <li {% if link.active %}class="site-nav--active"{% endif %}>
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      </li>
+    {% endif %}
+  {% endfor %}
+
+  {% if shop.customer_accounts_enabled %}
+    {% if customer %}
+    <li class="site-nav--has-dropdown{% if link.active %} site-nav--active{% endif %} customer-navlink large--hide" aria-haspopup="true">
+      <a href="/account">
+      {{ 'layout.customer.view_account' | t }}
+      <span class="icon-fallback-text">
+        <span class="icon icon-arrow-down" aria-hidden="true">
+        </span>
+      </span>
+      </a>
+      <div class="site-nav--dropdown nav-main">
+        <ul class="nav-inner">
+          <li class="site-nav--dropdown custom-mobile-nav"><a href="/pages/edit-account">Edit Account Details</a></li>
+          <li class="site-nav--dropdown custom-mobile-nav"><a href="/account">Order History</a></li>
+          <li class="site-nav--dropdown custom-mobile-nav"><a href="/pages/referral-link">50-50 Referral Program</a></li>
+          <li class="site-nav--dropdown custom-mobile-nav"><a href="/pages/my-discounts">My Cash Rewards</a></li>
+         <!-- <li class="site-nav--dropdown custom-mobile-nav"><a style="color:#468E41" href="/account/logout">Sign Out</a></li>-->
+        </ul>
+      </div>
+    </li>
+      <li class="customer-navlink large--hide">{{ 'layout.customer.log_out' | t | customer_logout_link }}</li>
+    {% else %}
+      <li class="customer-navlink large--hide">{{ 'layout.customer.sign_in' | t | customer_login_link }}</li>
+      <li class="customer-navlink large--hide">{{ 'layout.customer.create_account' | t | customer_register_link }}</li>
+    {% endif %}
+  {% endif %}
+</ul>
+
+<!-- for mobile view end -->
+
+<style>
+  
+  .site-nav--has-dropdown span.icon-fallback-text{
+    float:right;
+  }
+@media only screen and (min-width: 768px) {
+.site-nav--dropdown {
+  left: 0px;
+  right:0px;
+  border:0px;
+ 
+}
+  .no-touch .site-nav--has-dropdown:hover .site-nav--dropdown, .site-nav--has-dropdown.nav-hover .site-nav--dropdown, .nav-focus+.site-nav--dropdown, .show-dropdown .site-nav--dropdown{
+    border-bottom:1px solid #ddd;
+    box-shadow:none;
+}
+  ul>li>ul a {
+    padding-left: 0;
+}
+  #mobileNavBar .logo-mobile.text-center img{
+    
+  }
+  
+  .site-nav--dropdown>li ul {
+    opacity: 1;
+    padding: 0;
+    max-height: 100%;
+}
+  
+  .site-nav--dropdown>li:first-child>ul>li {
+    /*padding-bottom: 12px;*/
+   /* vertical-align: top;*/
+    /* margin: 0;
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid-column;
+   display: table;*/
+    width: 100%;
+}
+  ul>li {
+    overflow: visible;
+    position: static;
+}
+  
+  .nav-bar ul > li > ul a {
+    font-weight: 600;
+    margin-bottom: 8px;
+    margin-top: 8px;
+    padding-bottom: 0;
+    padding-left: 10px;
+    padding-top: 0;
+    text-transform: capitalize;
+    white-space: nowrap;
+    font-size:16px;
+}
+  .nav-bar ul>li>a {
+    table-layout: auto;
+}
+  
+  .nav-bar ul>li>a {
+    table-layout: auto;
+}
+ 
+.category-box{
+  font-size:16px;
+  padding-left:10%;
+  width: 1345px;
+  //max-height: 484px;
+}
+ 
+.ul-category{
+  //position: relative;
+  //left: 15%;
+ margin: 0px 0 1px 2px;
+}/*
+.li-category,.category-title>a{
+  position: relative;
+  left: 16.4%;
+}*/
+.category-title>a,.li-category>a{
+  color: green;
+  text-transform: uppercase;
+}
+.category-title>a:hover,.li-category>a:hover{
+  color: green;
+  text-transform: uppercase;
+}
+  .has-float{
+  	float:left;
+   width:21%;
+}
+   .site-nav--dropdown{
+    width: 1200px;
+    text-align: left;
+     margin:auto;
+  } 
+   ul>li>a {
+    display: table;
+    width: 100%;
+    padding: 6px 0;
+    table-layout: fixed;
+  }
+
+  
+}
+  .front-view .nav-inner {
+  	column-count: 4;
+    -moz-column-count: 4;
+  }
+ .nav-main>ul.nav-inner li {
+    float: none;
+    width: none;
+}
+@media only screen and (min-width: 320px) and (max-width:900px) {
+  .front-view{
+  display:none;
+}
+  .mobile-view{
+    display:block !important;
+  }
+  .mobile-view .nav-main>ul.nav-inner li.show-class ul{
+    display:none;
+  }
+  .mobile-view .nav-main>ul.nav-inner li.show-class span.category-title a{
+    //width:97%;
+    float:left;
+    
+  }
+}
+  
+  
+.mobile-view{
+  display:none;
+
+  }
+ .li-hidden{
+       visibility: hidden;
+ }
+ 
+ 
+ 
+</style>
+
+<script>
+  jQuery(document).ready(function(){
+    //console.log(this);
+    jQuery('li>span>a').click(function(){
+    jQuery(this).parent().attr('class');
+    //alert(new2);
+    jQuery(this).parent().next().toggle();
+    var sign = jQuery(this).next().text();
+      if(sign == '+' ){
+      
+      jQuery(this).next().text('-');
+      } else {
+      jQuery(this).next().text('+');
+      }
+            
+    }); 
+    
+    
+    jQuery('li>span>.plusminus').click(function(){
+    jQuery(this).parent().attr('class');
+    //alert(new2);
+    jQuery(this).parent().next().toggle();
+    var sign = jQuery(this).text();
+      if(sign == '+' ){
+      
+      jQuery(this).text('-');
+      } else {
+      jQuery(this).text('+');
+      }
+            
+    }); 
+    //var myli = '<li class="li-hidden"><a href="/" title="" class="">demo</a></li><li class="li-hidden"><a href="/" title="" class="">demo</a></li>';
+    //jQuery('.nav-inner>li:eq(9)').after(myli);
+    
+    jQuery('.custom-click>a').click(function(){
+      window.location.href= this.href;
+    });
+    jQuery('.custom-mobile-nav>a').click(function(){
+      window.location.href= this.href;
+    });
+    
+  });
+  
+  
+</script>
+
+
+
+
+

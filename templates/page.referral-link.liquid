@@ -1,0 +1,91 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
+{% if customer %}
+
+<img style="width:100%" src="{{ 'referral.png' | asset_url }}" class="my-refferal-image">
+<div class="grid inner-page-top">
+
+  <div class="grid-item large--two-thirds push--large--one-sixth">
+
+    <h1 class="headings">50-50 REFERRAL PROGRAM</h1>
+    <span class="mytitle">Use the following link for referrals:</span>
+ 	<input type="hidden" value="{{ customer.id }}" id="customerId" >
+    <div class="rte">
+      <div style="font-size:20px;color:blue;padding:7px;margin-top:20px;border:1px solid #585858" id="referDiv">
+          
+      </div>
+        
+          <a class="copy-text" data-clipboard-target="#referDiv" href="#"><button style="border:1px solid #585858" type="button">Copy Link</button></a>
+    </div>
+    <div>
+      <b>How it works:</b><br>
+      
+-	Simply paste this link into any means of communication with your friends, whether by email, WhatsApp, Facebook or any other channel.<br>
+      -	When your friends visit Sanadeeg through the referral link and register, they will get 50 Dhs <u>additional discount</u> on their first order.<br>
+-	Once your friend checks out his or her first order, you will receive 50 Dhs cash reward to use in your future orders. You will receive an email from our side confirming this reward.<br>
+      -	You can simply copy the reward code from the <em><u><a href="https://sanadeeg.com/pages/my-discounts" style="color: #2e74b5;">My Cash Rewards</a></u></em> section and use it as a discount code at checkout in your next order.
+
+    </div>
+  </div>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+  jQuery(document).ready(function(){
+    	
+  var refer=localStorage.getItem('referSpan');
+   	if(refer != null && refer!= "")
+    {
+      jQuery('#referDiv').text('https://sanadeeg.com/account/register?id='+refer);
+      
+    } else {
+    	//jQuery('.copy-text').text('Please make Your first order to get referal link');
+      jQuery('#referDiv').text('Please make Your first order to get referal link');
+      jQuery('#referDiv').css('color','black');
+    }
+    
+    
+    
+     var top_header= localStorage.getItem('top_header');
+    if(top_header == 1)
+    {
+      
+      //jQuery('.main-content, .site-footer').css('top','150px'); 
+      jQuery('.index-slider').css('margin-top','153px'); 
+    }
+    else
+    {
+      
+       var customerId={{ customer.id }};
+     jQuery.ajax({
+       				 
+       method:'POST',
+       url: '{{ settings.app_url_link }}/proxy/firstOrder.php',
+       data: {customerId:customerId},
+       success:function(resp){
+        
+         if(resp==0)
+         {
+           jQuery('.top-stick-head').css('display','block'); 
+           //jQuery('.main-content, .site-footer').css('top','188px');
+         }
+         else
+         {
+           localStorage.setItem('top_header',1);
+           //jQuery('.main-content, .site-footer').css('top','150px'); 
+           //jQuery('.index-slider').css('margin-top','153px'); 
+         }
+          
+       }
+    });
+      
+    }
+  });
+  
+  
+</script>
+{% else %}
+<script>
+ window.location.href="https://sanadeeg.com/account/login?r=1";
+  </script>
+{% endif %}

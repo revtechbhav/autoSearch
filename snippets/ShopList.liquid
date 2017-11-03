@@ -1,0 +1,17 @@
+{% if customer %}
+<!-- <input type="hidden" name="product_id" value="{{ product.id }}" id="SHLIST_product_id">
+<input type="hidden" name="customer_id" value="{{ customer.id }}" id ="SHLIST_customer_id"> -->
+{% assign prductId = product.id | prepend:"L" %}
+{% if customer.tags contains prductId %}
+	<a href="{{shop.url }}/pages/shoplist" class="btn buy-btn my-btn" style="color:#ccc">Added to List</a>
+{% else %}
+    <button type="button" name="add" data-productid="{{ product.id }}" data-customerid="{{ customer.id }}" class="btn buy-btn my-btn addTolist" >
+      <span class="icon"></span>
+      <span class="AddToList">Add to List</span>
+    </button>
+{% endif %}
+
+
+{% else %}
+<a href="{{shop.url }}/account/login" class="btn buy-btn my-btn">Add to List</a>
+{% endif %}

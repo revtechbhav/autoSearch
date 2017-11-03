@@ -1,0 +1,145 @@
+jQuery(document).ready(function(){
+    
+  $('.addTolist').click(function(){
+    //alert(this);
+	var pid = $(this).data('productid');
+    var cid = $(this).data('customerid');
+	addToShopList(pid, cid,this);
+  });
+
+  var cid = $('#customerId').val();
+  //console.log(cid);
+  getShopList(cid);
+  
+});
+
+function addToShopList(pid,cid,thisob){
+  var ListArray = [];
+  //console.log('product_id'+pid+'customer'+cid);
+  jQuery.ajax({
+    method:'get',
+    url:'https://eprofitanalyzer.com/shopifylist/addShopList',
+    data:{customerId:cid,productId:pid},
+    beforeSend: function(){
+       $(thisob).find('.AddToList').html('Adding....');	
+    },
+    success:function(res){
+       $(thisob).find('.AddToList').html('Added to List');
+       $(thisob).attr('disabled','disabled');
+        console.log(res);
+       if(res == 'Product is Added to list') {
+         	$('.shoplist-modal').css('display','block');
+        	AddMetafields(pid,cid);
+        }  
+      if(res == 'Product already exists'){
+        alert('Product already added. Please check your shop list or refresh current page.');	
+      }     
+      setTimeout(function(){$('.shoplist-modal').css('display','none');},3000)
+     }
+   });
+}
+
+function getShopList(cid){
+ // console.log(cid);
+  $.ajax({
+    method:'get',
+    url: 'https://eprofitanalyzer.com/shopifylist/getShopList',
+    data:{customerId:cid},
+    dataType: 'json',
+    beforeSend: function(){
+      $('#shoppinglistDetail').append('<div id="loader">Loading....</div>');	
+    },
+    success:function(res){
+     //console.log(res.error); 
+      if(res.error == 1){
+        $('#shoppinglistDetail').append('<div class="nofoundlist">No product found in List.</div>');
+      } 
+      else {
+         var htmlData = "";
+         $('#outofstock').hide();
+         $.each(res, function(key,value){
+           var obj = value.product;
+           var imagesrc = obj.images[0].src;  	
+           var price = obj.variants[0].price;
+           var inventory = obj.variants[0].inventory_quantity;
+           var policy = obj.variants[0].inventory_policy;
+           //console.log(obj.variants[0]);
+           var clonify =  $('#productArea').clone();
+           clonify.find('.shoplisttitle a').append(obj.title).attr('href','https://autosearchapp.myshopify.com/products/'+obj.handle);
+           clonify.find('.shoplist-image img').attr('src', imagesrc);
+           if(inventory <= 0 && policy == 'deny' ){
+             clonify.find('#addToCart').remove();
+             //clonify.find('.shoplistprice').remove();
+             clonify.find('.outofstock').text('Out of Stock');
+           } else {
+             clonify.find('.outofstock').text('');
+             clonify.find('.shoplistprice').text(price);
+             clonify.find('#addToCartForm select').append('<option selected="selected" data-sku="" value='+ obj.variants[0].id+' ></option>');
+           }
+           clonify.find('.remove-list a').attr('onclick','removeList('+ obj.id +','+cid+',this)');
+          
+           if(inventory <=0 && policy == 'deny'){
+             $('#outofstock').show();
+             $(clonify).appendTo('#shoppinglistDetailstock');
+           }
+           else {
+              $(clonify).appendTo('#shoppinglistDetail');
+           }
+      	});
+      }
+    },
+    complete:function(){
+      $('#loader').remove();
+    }
+  })
+  
+}
+
+function removeList(pid,cid,thisob){
+  var cid = cid;
+  var ListArray = [];	
+  $.ajax({
+    method:'get',
+    url: 'https://eprofitanalyzer.com/shopifylist/removeListItem',
+    data:{customerId:cid,productId:pid},
+     beforeSend: function(){
+      $(thisob).find('.remove-ajax').html('Removing....');	
+    },
+    success:function(res){
+      removeMetafields(pid,cid);
+      $(thisob).closest('.ShopList-row').remove();
+      console.log($('#shoppinglistDetail .ShopList-row').length);
+      if($('#shoppinglistDetail .ShopList-row').length == 0){
+        $('#shoppinglistDetail').html('<div class="nofoundlist">No product found in List.</div>');
+      }
+       //	$('#shoppinglistDetail').html('');
+     	 //getShopList(cid);
+    }
+    
+  });
+}
+
+
+
+function AddMetafields(pid,cid){
+    $.ajax({
+      method:'get',
+      url:'https://eprofitanalyzer.com/shopifylist/AddCustomerTags',
+      data:{customerId:cid,productId:pid},
+      success: function(res){
+        console.log(res);
+      }
+    });
+}
+
+function removeMetafields(pid,cid){
+  $.ajax({
+    method:'get',
+    url: 'https://eprofitanalyzer.com/shopifylist/RemoveCustomerTags',
+    data: {customerId:cid,productId:pid},
+    success: function(res){
+      console.log(res);
+    }
+  })
+  	
+}

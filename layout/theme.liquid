@@ -1,0 +1,2018 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="ie9 no-js"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-touch no-js"> <!--<![endif]-->
+<head>
+  <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WL4ZV6T');</script>
+<!-- End Google Tag Manager -->
+<style>
+#myProgress {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  background-color: #ddd;
+}
+  .top-stick-head
+  {
+   	display:none; 
+  }
+  .nineteen
+  {
+   	width:19% !important; 
+  }
+.ajaxifyCart--remove
+  {
+   	width:74px !important; 
+  }
+  .nivo-controlNav
+  {
+    
+    top:-66px;
+    z-index:99;
+    position:relative;
+  }
+  
+#myBar {
+  position: absolute;
+
+  height: 100%;
+  background-color: #4CAF50;
+}
+
+#label {
+  text-align: center;
+  line-height: 30px;
+  color: white;
+}
+ 
+  .dropbtn {
+   
+    color: #3E8E41;
+   	background:none;
+    font-size: 16px;
+    border: none;
+   
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 210px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  right:0; top:40px;
+  border:1px solid #ccc;
+}
+
+.dropdown-content a {
+    color: #666;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 12px 10px;
+    text-align: left;
+    text-decoration: none;
+    display: block;
+  border-bottom:1px solid #ccc;
+}
+.arrow-up {
+    border-color: transparent transparent #ccc;
+    border-style: solid;
+    border-width: 10px 10px 16px;
+    position: absolute;
+    right: 25px;
+    top: -26px;
+}
+.arrow-up div {
+    border-color: transparent transparent #fff;
+    border-style: solid;
+    border-width: 10px 10px 16px;
+    left: -10px;
+    position: absolute;
+    top: -8px;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+  .hide{
+  display:none;
+  }
+.dont-display, .dont-display body {
+    overflow: visible !important;
+}
+  
+  
+/*Start Sarwan Style*/  
+form.search-bar {
+    display: block;
+}  
+.newcollection li{width:100%; padding:0px 17px;}
+.serch{
+ width: 412px;
+ border: solid 1px white;
+ text-align: left;
+ position: absolute;
+ top: 44px;
+ z-index: 999;
+ background: #fff;
+ left: 0px;
+ 
+ word-wrap: break-word;
+ box-shadow: 0px 0px 10px #ccc;
+}
+.serch ul.results li{
+     float: left;
+     width: 100%;
+     border-bottom: 1px solid #ccc;
+     padding: 0px 14px;
+  margin:0;
+     / color: red; /
+}
+.serch ul.results li a{
+  padding:0;
+ color:#333;
+}
+.serch span.thumbnail{
+  margin-bottom:1px;
+     width: 50px;
+    height: 50px;
+    border: none;
+    float: left;
+}
+.serch span.title {
+    white-space: initial; font-size:13px; color:#333;
+}
+.serch span.price{
+ display:block;
+  color:#999;
+}
+
+.serch span.prod {
+    float: left;
+    width: 100%;
+
+}
+
+.serch ul.results {
+    float: left;
+    width: 100%;
+    display: block;
+}
+
+.serch span.colle {
+    float: left;
+    width: 100%;
+}
+
+.serch ul.count {
+    float: left;
+    width: 100%;
+    margin-bottom: 0;
+    color: #fff;
+    padding-top: 0px;
+  	padding-bottom:3px;
+  	padding-left:6px;
+  	padding-right:6px;
+    text-align: left;
+  	border-bottom: 1px solid #ccc;
+}
+.serch span p{
+     margin: 7px 15px 0px;
+    color: #000;
+    font-weight: bold;
+}
+.loadercent{
+	position: absolute;
+    top: 50px;
+    z-index: 99999;
+    margin-bottom: 20px;
+  	left: 50%;
+  
+}
+.thumbnail img {
+    height: 100%;
+    width: 100%;
+}  
+  
+  .grid-uniform.gridproductlist .line-content.grid-item .product-grid-image--centered{	    height: 232px;
+    overflow: hidden; display:inline-block;	}
+ 
+   .grid-uniform.gridproductlist .line-content.grid-item .product-grid-image--centered img{width: 100%;
+    height: auto;	}
+  
+.loader {border: 5px solid #f3f3f3;border-radius: 50%;border-top: 5px solid #84c241;width: 40px;height: 40px;-webkit-animation: spin 2s linear infinite;animation: spin 2s linear infinite;}@-webkit-keyframes spin {0% { -webkit-transform: rotate(0deg); }100% { -webkit-transform: rotate(360deg); }}@keyframes spin {0% { transform: rotate(0deg); }100% { transform: rotate(360deg); }}td.my-app-new-title {width: 65%;}.my-td-content{text-align: center;}.my-th-title{text-align: center;}.td-status{width: 12%;}  
+
+
+  div#div {
+    padding-left: 16px;
+    color: black;
+    margin-top: -9px;
+  }
+  div#pro-div {
+    padding-left: 16px;
+    color: black;
+    margin-top: -9px;
+  }
+  @media screen and (min-width: 768px){
+    #mobile-input-text{
+    	display:none;
+    }
+  }
+  @media screen and (max-width: 768px){
+    #mobile-input-text{
+      display: table;
+      width:100%;	
+      z-index: 999999999;
+      position: fixed;
+      top: 2%;
+      left: 0;
+      right: 0;
+      height: 50px;
+    box-shadow: 0 8px 17px 0 rgba(0,0,0,0.12);
+    }
+    form.mobile-form-class {
+      width: 80%;
+      margin-bottom: 0px;
+      margin-left: 4%;
+	}
+    input.mobile-input {
+    	padding: 12px;
+	}
+    .myglyphicon{
+    	position: absolute !important;
+        left: 87%;
+        top: 12% !important;
+        font-size: 24px;
+    }
+    .site-header{
+    	display:none;
+    }
+    main.wrapper.main-content {
+    	margin-top: 25%;
+	}
+/*     ul.results.myUL {
+      height: 363px;
+      overflow-y: hidden;
+	} */
+    
+  } 
+  
+/*End Sarwan Style*/  
+</style>
+  <!-- Basic page needs ================================================== -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  {% if settings.favicon_enable %}
+  <link rel="shortcut icon" href="{{ '321.png' | asset_url }}" type="image/x-icon" />
+  {% endif %}
+
+  <!-- Title and description ================================================== -->
+  <title>
+  {{ page_title }}{% if current_tags %}{% assign current_tags_joined = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: current_tags_joined }}{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+  </title>
+
+
+  {% if page_description %}
+    <meta name="description" content="{{ page_description | escape }}">
+  {% endif %}
+  <meta name="apple-itunes-app" content="app-id=1200698331">
+  
+  
+  <!-- Product meta ================================================== -->
+  {% include 'open-graph-tags' %}
+  {% include 'twitter-card' %}
+
+  <!-- Helpers ================================================== -->
+  <link rel="canonical" href="{{ canonical_url }}">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  {% if settings.ajax_cart_method != 'page' %}
+  <!-- Ajaxify Cart Plugin ================================================== -->
+  {{ 'ajaxify.scss.css' | asset_url | stylesheet_tag }}
+  {% endif %}
+
+  <!-- CSS ================================================== -->
+  {{ 'timber.scss.css' | asset_url | stylesheet_tag }}
+  {{ 'custom.css' | asset_url | stylesheet_tag }}
+  {% include 'google-fonts' %}
+
+  <!-- Header hook for plugins ================================================== -->
+  {{ content_for_header }}
+
+  {% include 'oldIE-js' %}
+ 
+  {% comment %}
+    If you store has customers disabled, you can remove the following JS file
+  {% endcomment %}
+  {% if template contains 'customers' %}
+    {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
+    {{ 'customer_area.js'  | shopify_asset_url | script_tag }}
+  {% endif %}
+{{ '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js' | script_tag }}
+ 
+  {{ 'modernizr.min.js' | asset_url | script_tag }}
+  {{ 'masonry.js' | asset_url | script_tag }}
+  {{ 'wookmark.js' | asset_url | script_tag }}
+ 
+  
+  {{ 'jquery.popup.min.js' | asset_url | script_tag }}
+  <script type="text/javascript">
+setTimeout(function(){var a=document.createElement("script");
+var b=document.getElementsByTagName("script")[0];
+a.src=document.location.protocol+"//script.crazyegg.com/pages/scripts/0067/6228.js?"+Math.floor(new Date().getTime()/3600000);
+a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+</script>
+  <meta name="google-site-verification" content="_iTIoprjFBwmSJJnsr9qj4uWepD_24E2tm-7xtbqu_U" />
+  <script type="text/javascript" id="alldata"></script>
+{% include 'sca-quick-view-init' %}
+ </head>
+<meta name="google-site-verification" content="5aLBMqzYEsFlXpX5YLunxCCV00zK1JxhPMsbZzZrAiQ" />
+
+<body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
+   
+  <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WL4ZV6T"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+  
+<script type='text/javascript'>   
+/*$(function(){
+  var home_link = window.location.href;
+  var width = $(window).width();
+  var height = $(window).height();
+  if(width < 769){
+	var height = parseInt(height) - 40;
+  }else{
+  	var height = parseInt(height) - 50;
+  }
+  
+ //$('.cont').css({'height': height+'px'});
+  //$('.popup').css({'height': height+'px'});
+  if(width < 769){
+   		//$('.popup').css({'overflow-y':'scroll'});
+  	}
+ 
+  
+  if(sessionStorage['popState'] != 'shown'){ 
+    if(home_link == 'https://sanadeeg.com/'){
+        var overlay = $('<div id="overlay"></div>');
+        setTimeout(function(){ 
+        overlay.show();
+        overlay.appendTo(document.body);
+        $('.popup').show();
+        $('body').css({'position':'relative'});
+       }, 2000); 
+    }
+    sessionStorage['popState'] = 'shown';
+  }
+  
+  $('.popup-content a').click(function(){
+    var a = $(this).attr('href');
+    window.location.href = $(this).attr('href');
+    console.log(a);
+  	$('.popup').hide();
+    overlay.appendTo(document.body).remove();
+    $('body').css({'position':'unset'});
+    return false;
+  });
+  $('.x').click(function(){
+    $('.popup').hide();
+    overlay.appendTo(document.body).remove();
+    $('body').css({'position':'unset'});
+    return false;
+  });
+  
+});*/
+{% if customer %}
+  jQuery(function(){
+    jQuery('.top_show_hide').css('margin-top','0px');
+       	var refer_id={{ customer.id }};
+        jQuery.ajax({
+          method:'POST',
+          url: 'https://www.sanadig.com/proxy/CheckRefercustomer.php',
+          data:{id:refer_id},
+          success:function(resp){
+               if(resp==1)
+               {
+                 jQuery('.refer_customer').css('display','block'); 
+                 jQuery('.simple_customer').css('display','none');
+               }else{
+                 jQuery('.refer_customer').css('display','none'); 
+                 jQuery('.simple_customer').css('display','block');
+               }
+            }  
+        });
+  });
+{% else %}
+  $(function(){
+    $('.top_show_hide').css('margin-top','-40px');
+  });
+{% endif %}
+</script>
+  <!--
+<div class='popup'>
+	<div class='cnt223'>
+ 		 {{ pages.Popup.content }}
+    </div>
+</div>-->
+<div class="sticky_head">
+  {% if customer %}
+  <div id="useJSONP" class="top-stick-head my-top-stick-head"><span class="simple_customer">{{ settings.Shipping_header_message}}</span><span class="refer_customer">{{ settings.Shipping_header_message_refer}}</span></div>
+  {% endif %}
+  <header class="site-header" role="banner">
+    <div class="wrapper">
+
+      <div class="grid--full">
+        <div class="grid-item large--one-half">
+           {% include 'search-bar' %}
+          <input type="hidden" value="{{ customer.id }}" id="login_id" />
+          <input type="hidden" value="{{ customer.id }}" id="customerId" >
+  		<input type="hidden" value="{{ customer.email }}" id="customerEmail" >
+    	<input type="hidden" value="{{ customer.name }}" id="customerName" >
+        </div>
+        <div class="grid-item logo-desktop large--one-third text-center">
+          {% if template == 'index' %}
+            <h1 class="header-logo" itemscope itemtype="http://schema.org/Organization">
+          {% else %}
+            <div class="h1 header-logo" itemscope itemtype="http://schema.org/Organization">
+          {% endif %}
+            {% if settings.logo_use_image %}
+              <a href="/" itemprop="url">
+                <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" itemprop="logo">
+              </a>
+            {% else %}
+              <a href="/" itemprop="url">{{ shop.name }}</a>
+            {% endif %}
+          {% if template == 'index' %}
+            </h1>
+          {% else %}
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="grid-item large--one-half text-center large--text-right">
+          {% if settings.header_message != blank or shop.customer_accounts_enabled %}
+            <div class="site-header--text-links{% if settings.header_message == blank %} medium-down--hide{% endif %}">
+              {% if settings.header_message != blank %}
+                {{ settings.header_message }}
+              {% endif %}
+
+              {% if shop.customer_accounts_enabled %}
+                <span class="site-header--meta-links medium-down--hide">
+                  {% if customer %}
+                     <img style="width:8% ;margin:-7px;" src="{{ 'account.png' | asset_url }}" >
+                  	<div class="dropdown">
+                      <button class="dropbtn">{{ customer.first_name }}</button>
+                      <div class="dropdown-content hide" id="mobile-cust-menu">
+                        <a href="/pages/edit-account">Edit Account Details</a>
+                        <a href="/account">Order History</a>
+                        <a href="/pages/referral-link">50-50 Referral Program</a>
+                        <a href="/pages/my-discounts">My Cash Rewards</a>
+                        <a style="color:#468E41" href="/account/logout">Sign Out</a>
+                        
+                        <div class="arrow-up" ><div></div></div>
+                      </div>
+                      
+                    </div>
+                  
+                 
+                  {% else %}
+                    {{ 'layout.customer.sign_in' | t | customer_login_link }}
+                    <span class="site-header--spacer"></span>
+                    {{ 'layout.customer.create_account' | t | customer_register_link }}
+                  {% endif %}
+                </span>
+             
+              {% endif %}
+            </div>
+
+            
+          {% endif %}
+		  {% if customer %}	        
+		  <a href="/pages/shoplist" class="mylist-top">My List
+            <div class="shoplist-modal" style="display:none;">
+              <div class="arrow-up"></div>
+              <span>Item Added to MyList</span>
+            </div>
+          </a>
+            
+          	<style>
+              .shoplist-modal {
+                position: absolute;
+                top: 27px;
+                left: -43px;
+                right: 0;
+                z-index: 999999;
+                background: rgba(51,51,51,0.9);
+                padding: 12px 17px;
+                width: 177px;
+                color: #fff;
+                opacity: 0.9;
+              }
+              .mylist-top{
+                position:relative;
+              }
+              .arrow-up {
+                width: 0;
+                height: 0;
+                border-left: 7px solid transparent;
+                border-right: 7px solid transparent;
+                border-bottom: 7px solid rgba(51,51,51,0.9);
+                top: -16px;
+                left: 59px;
+              }
+            </style>  
+          
+          {%  endif %}
+          <a href="/cart" class="header-cart-btn cart-toggle">
+            
+            <span class="cart-count cart-badge--desktop {% if cart.item_count == 0 %}hidden-count{% endif %}">{{ cart.item_count }}</span>
+          </a>
+          
+           {% if customer %}
+          <br>
+         		 <span>Lifetime Savings : <b id="lifetime_top_price"></b></span>
+           {% endif %}
+          
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <nav class="nav-bar" role="navigation">
+    <div class="wrapper">
+      
+      {% include 'site-nav' %}
+    </div>
+  </nav>
+<div id="mobileNavBar" class="my-mobile-nav-bar">
+    <div class="display-table-cell">
+      <a class="menu-toggle mobileNavBar-link my-menu-toggle"></a>
+    </div>
+    <div class="logo-mobile text-center">
+          {% if template == 'index' %}
+            <h1 class="header-logo" itemscope itemtype="http://schema.org/Organization">
+          {% else %}
+            <div class="h1 header-logo" itemscope itemtype="http://schema.org/Organization">
+          {% endif %}
+            {% if settings.logo_use_image %}
+              <a href="/" itemprop="url">
+                <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" itemprop="logo" class="my-logo-image">
+              </a>
+            {% else %}
+              <a href="/" itemprop="url">{{ shop.name }}</a>
+            {% endif %}
+          {% if template == 'index' %}
+            </h1>
+          {% else %}
+            </div>
+          {% endif %}
+        </div>
+   
+    <div class="display-table-cell mobile-cart my-mobile-cart">
+     
+        <a href="#"  class="search-bar--submit icon-fallback-text mobile-cart-s">
+          <span class="icon icon-search" aria-hidden="true"></span>
+        </a>
+      
+      <a href="/cart" class=" mobileNavBar-link mobile_sview">
+        <span class="icon"></span>
+        {{ 'layout.cart.cart' | t }} <span class="cart-count {% if cart.item_count == 0 %}hidden-count{% endif %}">{{ cart.item_count }}</span>
+      </a>
+    </div>
+   </div>
+   <!--Sarwan -->
+  <header class="mobile-header">
+    <div id="mobile-input-text">
+      <form class="mobile-form-class" action="/search" method="get" role="search">
+        <input type="hidden" name="type" value="tags">
+        <input autocomplete="off" onkeyup="mobileSearchFunction()" type="search" class="mobile-input mobile-search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'layout.search_bar.placeholder' | t }}" aria-label="{{ 'layout.search_bar.placeholder' | t }}">
+        <span class="glyphicon glyphicon-remove myglyphicon"></span>
+      </form>
+    </div>
+  </header>   
+ <!--Sarwan -->
+ </div>
+  
+  
+  <!--tekki code start-->
+  
+  
+{% if template == 'index' %}
+
+  {{ 'default.css' | asset_url | stylesheet_tag }}
+  {{ 'what.css' | asset_url | stylesheet_tag }}
+
+  {{ 'nivo-slider.css' | asset_url | stylesheet_tag }}
+ 
+  
+  {{ 'jj.js' | asset_url | script_tag }}
+  {{ 'jquery.nivo.slider.js' | asset_url | script_tag }}
+
+<div class="index-slider">
+  	
+     <div id="wrapper" class="top_show_hide">
+
+        <div class="slider-wrapper theme-default">
+            <div id="slider" class="nivoSlider">
+              {% if settings.slide_new_1_check %}
+              <a href="{{ settings.slide_new_1_link }}">
+                <img src="{{ 'slide_new_1.jpg' | asset_url }}" data-transition="slideInRight"  data-thumb="{{ 'slide_new_1.jpg' | asset_url }}" alt="" />
+              </a>
+              {% endif %}
+              {% if settings.slide_new_2_check %}
+              <a href="{{ settings.slide_new_2_link }}">
+                <img src="{{ 'slide_new_2.jpg' | asset_url }}" data-transition="slideInRight"  data-thumb="{{ 'slide_new_2.jpg' | asset_url }}" alt="" />
+              </a>
+              {% endif %}
+              {% if settings.slide_new_3_check %}
+              <a href="{{ settings.slide_new_3_link }}">
+                <img src="{{ 'slide_new_3.jpg' | asset_url }}"  data-transition="slideInRight" data-thumb="{{ 'slide_new_3.jpg' | asset_url }}" alt="" />
+              </a>
+              {% endif %}
+              {% if settings.slide_new_4_check %}
+              <a href="{{ settings.slide_new_4_link }}">
+                <img src="{{ 'slide_new_4.jpg' | asset_url }}" data-transition="slideInRight"  data-thumb="{{ 'slide_new_4.jpg' | asset_url }}" alt="" />
+              </a>
+              {% endif %}
+              {% if settings.slide_new_5_check %}
+              <a href="{{ settings.slide_new_5_link }}">
+                <img src="{{ 'slide_new_5.jpg' | asset_url }}" data-transition="slideInRight"  data-thumb="{{ 'slide_new_5.jpg' | asset_url }}" alt="" />
+              </a>
+              {% endif %}
+              {% if settings.slide_new_6_check %}
+              <a href="{{ settings.slide_new_6_link }}">
+                <img src="{{ 'slide_new_6.jpg' | asset_url }}" data-transition="slideInRight"  data-thumb="{{ 'slide_new_6.jpg' | asset_url }}" alt="" />
+              </a>
+              {% endif %}
+              {% if settings.slide_new_7_check %}
+              <a href="{{ settings.slide_new_7_link }}">
+              	<img src="{{ 'slide_new_7.jpg' | asset_url }}" data-transition="slideInRight"  data-thumb="{{ 'slide_new_7.jpg' | asset_url }}" alt="" />
+              </a>
+              {% endif %}
+              {% if settings.slide_new_8_check %}
+              <a href="{{ settings.slide_new_8_link }}">
+              	<img src="{{ 'slide_new_8.jpg' | asset_url }}" data-transition="slideInRight"  data-thumb="{{ 'slide_new_8.jpg' | asset_url }}" alt="" />
+              </a>
+              {% endif %}
+
+            </div>
+        </div>
+
+    </div> 
+</div>
+
+<!--       <div class="index-slider bane">
+    	<div class="wrapper bannerr">
+    		{{ 'NATIONAL.png' | asset_url | img_tag }}
+        </div>
+      </div> -->
+			
+  <script type="text/javascript">
+    jQuery(window).load(function() {
+      	
+      jQuery('#slider').nivoSlider({
+      		 pauseTime: 6000,
+      });
+      
+      
+    });
+   
+    </script>
+   
+      <!--div class="homepage-storyarea">
+        <div class="h-story1"><p>Bigger sizes & savings</p></div>
+        <div class="h-story2"><p>No membership fee</p></div>
+        <div class="h-story3"><p>Fast, free shipping*</p></div>
+      </div-->
+ </div>
+  
+  <style>
+    .main-content{top:0px;}
+    .main-content hr {display:none;}
+    .index-slider {margin-bottom:-46px}
+  </style>
+
+  {% endif %}
+
+  <!--tekki code close-->
+
+
+  <main class="wrapper main-content" role="main">
+    
+    
+
+    {{ content_for_layout }}
+
+  </main>
+  
+ 
+
+  {% capture theme_settings_link %}<a href="/admin/themes/{{ theme.id }}/settings">{{ 'layout.footer.theme_settings' | t }}</a>{% endcapture %}
+
+  <footer class="site-footer small--text-center" role="contentinfo">
+
+    <div class="wrapper">
+
+      <div class="grid">
+        {% if settings.footer_quicklinks_enable %}
+          <div class="grid-item medium--one-half large--three-twelfths nineteen">
+            <h3>Company</h3>
+            <ul>
+             
+             
+             	<li><a href="/pages/about-us">About Us</a></li>
+             	<li><a href="mailto:hr@sanadeeg.com">Join the Team</a></li>
+              <li><a href="/collections/sanadeeg-for-business">Sanadeeg for Business</a></li>
+            </ul>
+          </div>
+        {% endif %}
+        {% if settings.footer_quicklinks_enable %}
+         <div class="grid-item medium--one-half large--three-twelfths nineteen">
+            <h3>Resources</h3>
+            <ul>
+              <li><a href="/pages/our-programs">Our Programs</a></li>
+             <li><a href="/pages/contact-us">Contact Us</a></li>
+              <li><a href="mailto:suggest@sanadeeg.com">Suggest Products</a></li>
+              <li><a href="/pages/term-condition">Terms & conditions</a></li>
+             
+            </ul>
+          </div>
+          {% endif %}
+        {% if settings.footer_quicklinks_enable %}
+          <!--div class="grid-item medium--one-half large--three-twelfths nineteen">
+            <h3>{{ 'layout.footer.quick_links' | t }}</h3>
+            <ul>
+              {% for link in linklists[settings.footer_quicklinks_linklist].links %}
+                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+              {% else %}
+                {% capture theme_settings_footer_linklist_path %}<strong>Footer</strong> > <strong>Quick links link list</strong>{% endcapture %}
+                {{ 'layout.footer.instructions_for_linklist_html' | t: theme_settings_link: theme_settings_link, theme_settings_footer_linklist_path: theme_settings_footer_linklist_path }}
+              {% endfor %}
+            </ul>
+          </div-->
+         <div class="grid-item medium--one-half large--three-twelfths nineteen">
+            <h3>QUIK LINKS</h3>
+<!--             <ul>
+             
+              <li><a href="/search">Search</a></li>
+        
+            </ul> -->
+          </div>
+        <div class="grid-item medium--one-half large--three-twelfths nineteen">
+            <h3>SOCIAL LINKS</h3>
+            <ul>
+             
+              <li><a href="https://www.facebook.com/Sanadeeg-1755413444722799/"><img src="{{ 'fb.png' | asset_url }}"></a>
+              <a href="https://www.instagram.com/sanadeegbulk/"><img src="{{ 'instagram.png' | asset_url }}"></a>
+              <a href="https://twitter.com/SanadeegBulk"><img src="{{ 'twitter.png' | asset_url }}"></a></li>
+        
+            </ul>
+          </div>
+        {% endif %}
+
+        {% if settings.footer_content_enable or settings.footer_social_enable %}
+        <!--<div class="grid-item medium--one-half large--five-twelfths">
+          <h3>{{ 'layout.footer.get_in_touch' | t }}</h3>
+          {% if settings.footer_content_enable %}
+            <p>
+              {% if settings.footer_content_text != blank %}
+                {{ settings.footer_content_text }}
+              {% else %}
+                {{ 'layout.footer.instructions_for_text_content_html' | t: theme_settings_link: theme_settings_link }}
+              {% endif %}
+            </p>
+          {% endif %}
+          {% if settings.footer_social_enable %}
+            <ul class="inline-list social-icons">
+              {% if settings.social_twitter_link != blank %}
+                <li>
+                  <a class="icon-fallback-text" href="{{ settings.social_twitter_link }}" title="{{ 'layout.footer.store_on_social_network' | t: store_name: shop.name, social_network: 'Twitter' | escape }}">
+                    <span class="icon icon-twitter" aria-hidden="true"></span>
+                    <span class="fallback-text">Twitter</span>
+                  </a>
+                </li>
+              {% endif %}
+              {% if settings.social_facebook_link != blank %}
+                <li>
+                  <a class="icon-fallback-text" href="{{ settings.social_facebook_link }}" title="{{ 'layout.footer.store_on_social_network' | t: store_name: shop.name, social_network: 'Facebook' | escape }}">
+                    <span class="icon icon-facebook" aria-hidden="true"></span>
+                    <span class="fallback-text">Facebook</span>
+                  </a>
+                </li>
+              {% endif %}
+              {% if settings.social_pinterest_link != blank %}
+                <li>
+                  <a class="icon-fallback-text" href="{{ settings.social_pinterest_link }}" title="{{ 'layout.footer.store_on_social_network' | t: store_name: shop.name, social_network: 'Pinterest' | escape }}">
+                    <span class="icon icon-pinterest" aria-hidden="true"></span>
+                    <span class="fallback-text">Pinterest</span>
+                  </a>
+                </li>
+              {% endif %}
+              {% if settings.social_google_plus_link != blank %}
+                <li>
+                  <a class="icon-fallback-text" href="{{ settings.social_google_plus_link }}" title="{{ 'layout.footer.store_on_social_network' | t: store_name: shop.name, social_network: 'Google' | escape }}" rel="publisher">
+                    <span class="icon icon-google_plus" aria-hidden="true"></span>
+                    <span class="fallback-text">Google</span>
+                  </a>
+                </li>
+              {% endif %}
+              {% if settings.social_instagram_link != blank %}
+                <li>
+                  <a class="icon-fallback-text" href="{{ settings.social_instagram_link }}" title="{{ 'layout.footer.store_on_social_network' | t: store_name: shop.name, social_network: 'Instagram' | escape }}">
+                    <span class="icon icon-instagram" aria-hidden="true"></span>
+                    <span class="fallback-text">Instagram</span>
+                  </a>
+                </li>
+              {% endif %}
+              {% if settings.social_tumblr_link != blank %}
+                <li>
+                  <a class="icon-fallback-text" href="{{ settings.social_tumblr_link }}" title="{{ 'layout.footer.store_on_social_network' | t: store_name: shop.name, social_network: 'Tumblr' | escape }}">
+                    <span class="icon icon-tumblr" aria-hidden="true"></span>
+                    <span class="fallback-text">Tumblr</span>
+                  </a>
+                </li>
+              {% endif %}
+              {% if settings.social_youtube_link != blank %}
+                <li>
+                  <a class="icon-fallback-text" href="{{ settings.social_youtube_link }}" title="{{ 'layout.footer.store_on_social_network' | t: store_name: shop.name, social_network: 'YouTube' | escape }}">
+                    <span class="icon icon-youtube" aria-hidden="true"></span>
+                    <span class="fallback-text">YouTube</span>
+                  </a>
+                </li>
+              {% endif %}
+              {% if settings.social_vimeo_link != blank %}
+                <li>
+                  <a class="icon-fallback-text" href="{{ settings.social_vimeo_link }}" title="{{ 'layout.footer.store_on_social_network' | t: store_name: shop.name, social_network: 'Vimeo' | escape }}">
+                    <span class="icon icon-vimeo" aria-hidden="true"></span>
+                    <span class="fallback-text">Vimeo</span>
+                  </a>
+                </li>
+              {% endif %}
+              {% if settings.social_fancy_link != blank %}
+                <li>
+                  <a class="icon-fallback-text" href="{{ settings.social_fancy_link }}" title="{{ 'layout.footer.store_on_social_network' | t: store_name: shop.name, social_network: 'Fancy' | escape }}">
+                    <span class="icon icon-fancy" aria-hidden="true"></span>
+                    <span class="fallback-text">Fancy</span>
+                  </a>
+                </li>
+              {% endif %}
+            </ul>
+          {% endif %}
+        </div>-->
+        {% endif %}
+
+        {% if settings.footer_newsletter_enable %}
+        <div class="grid-item large--one-third">
+          <h3>{{ 'layout.footer.newsletter_title' | t }}</h3>
+          {% include 'newsletter-form' %}
+        </div>
+        {% endif %}
+      </div>
+
+      <hr class="hr--small">
+
+      <div class="grid">
+        <div class="grid-item{% unless shop.enabled_payment_types == empty %} large--two-fifths{% endunless %}">
+          {% if settings.footer_legallinks_enable %}
+            <ul class="legal-links inline-list">
+              {% for link in linklists[settings.footer_legallinks_linklist].links %}
+                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+          <ul class="legal-links inline-list">
+            <li>
+              &copy; {{ 'now' | date: "%Y" }} {{ shop.name | link_to: '/' }}
+            </li>
+            <!--<li>
+              {{ powered_by_link }}
+            </li>-->
+          </ul>
+        </div>
+
+        {% unless shop.enabled_payment_types == empty %}
+          <!--<div class="grid-item large--three-fifths large--text-right">
+            {% assign payment_icons_available = 'amazon_payments,american_express,bitcoin,cirrus,dankort,diners_club,discover,dogecoin,dwolla,forbrugsforeningen,interac,jcb,litecoin,maestro,master,paypal,visa' | split: ',' %}
+            <ul class="inline-list payment-icons">
+              {% for type in shop.enabled_payment_types %}
+                {% if payment_icons_available contains type %}
+                  <li>
+                    <span class="icon-fallback-text">
+                      <span class="icon icon-{{ type }}" aria-hidden="true"></span>
+                      <span class="fallback-text">{{ type | replace: '_',' ' }}</span>
+                    </span>
+                  </li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          </div>-->
+        <div class="grid-item large--three-fifths large--text-right">
+          <ul class="inline-list payment-icons">
+            <li style="width:30px"><img src="{{ 'mastercard.jpg' | asset_url }}"></li>
+            <li style="width:30px"><img src="{{ 'visa.jpg' | asset_url }}"></li>
+          </ul>
+        </div>
+        {% endunless %}
+
+      </div>
+
+    </div>
+   
+  </footer>
+  <div id="fixedbutton"><a href="javascript:history.back()">&lt;&lt;<span>BACK</span></a></div>
+  
+  <div class="smartbanner mob_banner" id="smartabanner">
+    <div class="smartbanner-container">
+        <a id="smb-close" class="smartbanner-close">&times;</a>
+        <span class="smartbanner-icon"></span>
+        <div class="smartbanner-info">
+            <div class="smartbanner-title">Sanadeeg</div>
+            <div>Sanadeeg</div>
+            <span>Free &ndash;&ndash; Google Play</span>
+        </div>
+        <a href="https://play.google.com/store/apps/details?id=com.sanadeeg&hl=en" target="_blank" class="smartbanner-button">
+            <span class="smartbanner-button-text">Get it</span>
+        </a>
+    </div>
+</div>
+<script>
+$(function(){
+  var w_width = $(window).width();
+  var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+  if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream){
+        $('#smartabanner').hide();
+    	$('#fixedbutton').css('bottom','10px');
+  }else{
+    if(w_width < 1025){
+      $('#smartabanner').css('display','block');
+      $('.smartbanner-close').click(function(){
+          sessionStorage.setItem("Test", "Test");
+          $('#smartabanner').slideUp();
+          $('#fixedbutton').css('bottom','10px');
+      });
+    }
+  }
+
+  var url = window.location.pathname; 
+  //var filename = url.substring(url.lastIndexOf('/')+1);
+  var filename = window.location.href;
+  
+  if(w_width < 1025){
+    if(filename == 'https://sanadeeg.com/'){
+      $('#fixedbutton').css('bottom','85px');
+      if(sessionStorage.getItem("Test") == "Test"){
+        $('#smartabanner').hide();
+      }else{
+        if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream){
+        	$('#smartabanner').hide();
+    		$('#fixedbutton').css('bottom','10px');
+        }else{
+        	$('#smartabanner').show();
+        }
+      }
+    }else{
+      $('#smartabanner').hide();
+      $('#fixedbutton').css('bottom','10px');
+    }
+  }
+    
+});
+</script>
+
+  {{ 'fastclick.min.js' | asset_url | script_tag }}
+
+  {{ 'shop.js' | asset_url | script_tag }}
+
+ {{ 'shoplist.js' | asset_url | script_tag }}
+
+  {% if template == 'index' and hero_enabled %}
+    {{ 'jquery.flexslider.min.js' | asset_url | script_tag }}
+  {% endif %}
+
+  <script>
+  var moneyFormat = '{{ shop.money_format }}';
+  </script>
+
+{% if settings.ajax_cart_method != 'page' %}
+  {{ 'handlebars.min.js' | asset_url | script_tag }}
+   {% include 'ajax-cart-template' %} 
+
+  
+
+
+{{ 'ajaxify.js' | asset_url | script_tag }}
+  
+  
+  
+  
+                
+                             
+  <script  type="text/javascript">
+ 
+  jQuery(function($) {
+    
+    ajaxifyShopify.init({
+      method: '{{ settings.ajax_cart_method }}',
+      wrapperClass: 'wrapper',
+      formSelector: '#addToCartForm',
+      addToCartSelector: '#addToCart',
+      cartCountSelector: '.cart-count',
+      toggleCartButton: '.cart-toggle',
+      useCartTemplate: true,
+      btnClass: 'btn',
+      moneyFormat: {{ shop.money_format | json }},
+      disableAjaxCart: false,
+      enableQtySelectors: true,
+      addingToCartBtnLabel:'Adding..'
+    });
+     
+    
+  });
+
+    
+  </script>
+{% endif %}
+  
+  <script  type="text/javascript">
+    jQuery('body').on('click','.cart-toggle, #addToCart, .ajaxifyCart--add',function(e){
+
+     //alert('helo'); 
+    ajaxCartDiv();
+      
+      /*setTimeout(function(){
+        jQuery('#ajaxifyDrawer').removeAttr('style').removeClass('is-visible');
+      },3000);*/
+  });
+
+  jQuery('body').on('click','.ajaxifyCart--minus',function(e){
+    ajaxCartDiv();
+  });
+    
+     jQuery('body').on('click','.ajaxifyCart--remove',function(e){
+
+       ajaxCartDiv();
+    });
+  
+    //jQuery(document).ready(function(){
+     
+      jQuery('body').on('keypress','.ajaxifyCart--num',function(e){
+
+        if(e.keyCode == 13){
+          //console.log('fdsf');
+         // ajaxCartDiv();
+				
+         ajaxCartDiv();
+          //e.preventDefault();
+        }
+       });  
+    
+    jQuery(document).ready(function(){
+    	var page = jQuery('body').attr('id');
+      if(page == 'your-shopping-cart'){
+      	ajaxCartDiv();
+      }
+      if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
+         $('body').addClass('ios-device');
+          }
+           else {
+          }
+    });
+ 
+    
+ function ajaxCartDiv(){
+  
+      jQuery('#ajaxifyDrawer>#ajaxifyCart .cart-form #discountDiv').css('display','none');
+
+    var winhght = jQuery(window).height();
+   alert(winhght);
+  
+    var appxht = (winhght-240); 
+     setTimeout(function(){  
+       var length = jQuery('.cart-row').length;
+       if(length > 3){
+         jQuery('#ajaxifyDrawer>#ajaxifyCart form .ajaxFormHeight ').css('height',appxht).css('overflow-y','scroll');
+       }
+     },3000);
+   
+   //jQuery('.cart-form .cat-total-row button').attr('disabled',false);
+   //jQuery('#ajaxifyDrawer>#ajaxifyCart>.cart-form button').attr('disabled',false);
+   setTimeout(function(){
+    
+   var totalPric = jQuery('.cart-form .cart-subtotal--price>small:eq(0)').text();
+   var shippingPrice=parseInt(localStorage.getItem('shippingPrice'));
+   var price=totalPric.split("Dhs.");
+   var subPrice=price[1];
+   var totalPrice = parseFloat(subPrice.replace(/,/g, ''));
+   var subTotal=parseInt(totalPrice);
+     //console.log("TOTAL ORDER = "+subTotal);
+	if(subTotal < shippingPrice)
+    {
+      var left= shippingPrice-subTotal;
+      jQuery('.final-price').text(left);
+      var percentage=subTotal/shippingPrice;
+      var perc=percentage*100;
+      jQuery('#myBar').css('width',perc+'%');
+      setTimeout(function(){
+        jQuery('#ajaxifyDrawer').removeAttr('style').removeClass('is-visible');
+      },3000);
+      
+    }
+    else
+    {
+      jQuery('.cart-form button').removeAttr('disabled');
+      var perc='100%';
+      jQuery('#myBar').css('width',perc);
+      jQuery('.cart-form .shipping-div .shippingLine').html('You qualify for <b>free shipping (in Dubai)!</b>');
+      jQuery('.cart-form .shipping-div .next_shippingline').css('display','block');
+      var first_start = {{ settings.first_start_point }} ;
+      var first_end = {{ settings.first_end_point | remove: "," }} ;
+      var sec_start = {{ settings.sec_start_point | remove: "," }} ;
+      var sec_end = {{ settings.sec_end_point | remove: "," }} ;
+      var third_start = {{ settings.third_start_point | remove: "," }} ;
+      var third_end = {{ settings.third_end_point | remove: "," }} ;
+      var forth_start = {{ settings.fourth_start_point | remove: "," }} ;
+      var forth_end = {{ settings.fourth_end_point | remove: "," }} ;
+      var fifth_start = {{ settings.fifth_start_point | remove: "," }} ;
+      var fifth_end = {{ settings.fifth_end_point | remove: "," }} ;
+      var sixth_start = {{ settings.sixth_start_point | remove: "," }} ;
+      var f_cash = {{ settings.first_cashback }} ;
+      var s_cash = {{ settings.sec_cashback }} ;
+      var third_cash = {{ settings.third_cashback }} ;
+      var fourth_cash = {{ settings.fourth_cashback }} ;
+      var fifth_cash = {{ settings.fifth_cashback }} ;
+      var sixth_cash = {{ settings.sixth_cashback }} ;
+      
+      if(subTotal > shippingPrice && subTotal < first_start)
+      {
+        var bal_left = first_start-shippingPrice;
+        var more_add = first_start-subTotal;
+        var new_per = subTotal-shippingPrice;     
+        var new_percentage = new_per/bal_left;
+        var new_perc = new_percentage*100;
+        jQuery('#myBar').css('width',new_perc+'%');    
+        jQuery('.cart-form .shipping-div .next_shippingline').html('<span class="reward_line">Add <b> Dhs.  '+more_add+'</b> to qualify for <b> Dhs. '+f_cash+'</b> Cash Reward</span>');
+      }/*for second step*/
+      else if(subTotal >= first_start && subTotal < sec_start)
+      {
+        if(subTotal == first_start){
+          jQuery('#myBar').css('width','100%');
+        } 
+        jQuery('.cart-form .shipping-div .next_shippingline').html('You qualify for <b> Dhs. '+f_cash+'</b> Cash Reward');
+        var bal_left = sec_start-first_start;
+        var more_add = sec_start-subTotal;
+        var new_per = subTotal-first_start;
+        var new_percentage = new_per/bal_left;
+        var new_perc = new_percentage*100;
+        jQuery('#myBar').css('width',new_perc+'%');
+        jQuery('.cart-form .shipping-div .next_shippingline').append('<br><span class="reward_line">Add <b> Dhs. '+more_add+'</b> to qualify for <b> Dhs. '+s_cash+'</b> Cash Reward</span>');
+      }
+      else if(subTotal >=sec_start && subTotal < third_start)
+      {
+         if(subTotal == sec_start){
+          jQuery('#myBar').css('width','100%');
+        } 
+        jQuery('.cart-form .shipping-div .next_shippingline').html('You qualify for <b> Dhs. '+s_cash+'</b> Cash Reward');
+      	var bal_left = third_start-sec_start;
+        var more_add = third_start-subTotal;
+        var new_per = subTotal-sec_start;
+        var new_percentage = new_per/bal_left;
+        var new_perc = new_percentage*100;
+        jQuery('#myBar').css('width',new_perc+'%');
+        jQuery('.cart-form .shipping-div .next_shippingline').append('<br><span class="reward_line">Add <b> Dhs. '+more_add+'</b> to qualify for <b> Dhs. '+third_cash+'</b> Cash Reward</span>');
+      }
+      else if(subTotal >=third_start && subTotal < forth_start)
+      {
+         if(subTotal == third_start){
+          jQuery('#myBar').css('width','100%');
+        } 
+        jQuery('.cart-form .shipping-div .next_shippingline').html('You qualify for <b> Dhs. '+third_cash+'</b> Cash Reward');
+      	var bal_left = forth_start-third_start;
+        var more_add = forth_start-subTotal;
+        var new_per = subTotal-third_start;
+        var new_percentage = new_per/bal_left;
+        var new_perc = new_percentage*100;
+        jQuery('#myBar').css('width',new_perc+'%');
+        jQuery('.cart-form .shipping-div .next_shippingline').append('<br><span class="reward_line">Add <b> Dhs. '+more_add+'</b> to qualify for <b> Dhs. '+fourth_cash+'</b> Cash Reward</span>');
+      }
+      else if(subTotal >=forth_start && subTotal < fifth_start)
+      {
+         if(subTotal == forth_start){
+          jQuery('#myBar').css('width','100%');
+        }
+        jQuery('.cart-form .shipping-div .next_shippingline').html('You qualify for <b> Dhs. '+fourth_cash+'</b> Cash Reward');
+      	var bal_left = fifth_start-forth_start;
+      	var more_add = fifth_start-subTotal;
+        var new_per = subTotal-forth_start;
+        var new_percentage = new_per/bal_left;
+        var new_perc = new_percentage*100;
+        jQuery('#myBar').css('width',new_perc+'%');
+        jQuery('.cart-form .shipping-div .next_shippingline').append('<br><span class="reward_line">Add <b> Dhs. '+more_add+'</b> to qualify for <b> Dhs. '+fifth_cash+'</b> Cash Reward</span>');
+      }
+      else if(subTotal >=fifth_start && subTotal < sixth_start)
+      {
+         if(subTotal == fifth_start){
+          jQuery('#myBar').css('width','100%');
+        }
+        jQuery('.cart-form .shipping-div .next_shippingline').html('You qualify for <b> Dhs. '+fifth_cash+'</b> Cash Reward');
+      	var bal_left = sixth_start-fifth_start;
+        var more_add = sixth_start-subTotal;
+        var new_per = subTotal-fifth_start;
+        var new_percentage = new_per/bal_left;
+        var new_perc = new_percentage*100;
+        jQuery('#myBar').css('width',new_perc+'%');
+        jQuery('.cart-form .shipping-div .next_shippingline').append('<br><span class="reward_line">Add <b> Dhs. '+more_add+'</b> to qualify for <b> Dhs. '+sixth_cash+'</b> Cash Reward</span>');
+      }
+      else
+      {
+        if(subTotal >= sixth_start){
+          jQuery('#myBar').css('width','100%');
+          jQuery('.cart-form .shipping-div .next_shippingline').html('You qualify for <b> Dhs. '+sixth_cash+'</b> Cash Reward');
+        }
+      }
+    }
+     
+     
+      {% if customer %}
+      var customerId={{ customer.id }};
+      
+      {% else %}
+      
+      var customerId="";
+      {% endif %}
+     
+      if(customerId != "")
+     {
+       
+      jQuery.ajax({
+      		
+        method:'Post',
+        url:'https://www.sanadig.com/proxy/checkFirstDiscount.php',
+        data:{customerId:customerId},
+        success:function(respp)
+        {
+          if(respp==0)
+          {
+			if(subTotal >= '250'){
+              jQuery('#ajaxifyDrawer>#ajaxifyCart>form').attr('action','/cart?discount=WELCOME_DISCOUNT');
+            }else{
+                jQuery('#ajaxifyDrawer>#ajaxifyCart>form').attr('action','/cart?discount=0');
+            }
+          }
+          
+          else if(respp=='refer')
+          {
+            if(subTotal >= '250'){
+                 jQuery('#ajaxifyDrawer>#ajaxifyCart>form').attr('action','/cart?discount=WELCOME_DISCOUNT_REFERRED');          
+              }else{
+                  jQuery('#ajaxifyDrawer>#ajaxifyCart>form').attr('action','/cart?discount=0');
+              }
+            
+          }
+          else if(respp=='nothing')
+          {
+            
+          }
+          else
+          {
+           	jQuery('#ajaxifyDrawer>#ajaxifyCart>form').attr('action','/cart?discount='+respp);
+
+          }
+          
+         jQuery('#ajaxifyDrawer>#ajaxifyCart>.cart-form button').attr('disabled',false);
+        }
+        
+      });
+       
+     } 
+     
+   },5000);	
+}  
+
+    jQuery('body').on('change','.cart-form .discountDiv .selectOption',function(){
+    	var value=jQuery(this).val();
+      var value=jQuery(this).val();
+      		if(value == "")
+            {
+              jQuery('.cart-form').attr('action','/cart'); 
+            }
+      else
+      { 
+        	jQuery('.cart-form').attr('action','/cart?discount='+value);  
+      }
+    });
+  </script>
+
+{% include 'search-autocomplete' %}
+  
+   <script  type="text/javascript">
+      function move() {
+        var elem = document.getElementById("myBar");   
+        var width = 10;
+        var id = setInterval(frame, 10);
+        function frame() {
+          if (width >= 100) {
+            clearInterval(id);
+          } else {
+            width++; 
+            elem.style.width = width + '%'; 
+          }
+        }
+      }
+</script>
+  
+  <script  type="text/javascript">
+    jQuery(document).ready(function(){  
+    var id=jQuery('body').attr('id');
+    if(top_header == 1)
+    {
+      jQuery('.main-content').css('top','0px'); 
+      jQuery('.index-slider').css('margin-top','153px');
+      jQuery('.index-slider').css('margin-bottom','-46px');
+    }
+    else
+    {
+      
+       {% if customer %}
+        var customerId={{ customer.id }};
+           {% endif %}
+        var top_header= localStorage.getItem('top_header');
+    
+              if(top_header == null)
+              {
+                 var windowWidth = jQuery(window).width(); 
+                 if(windowWidth <= 768)
+                 {
+                  // alert(windowWidth);
+                   jQuery('.main-content').css('top','0px');
+                 }else
+                 {
+                
+               	  jQuery('.main-content').css('top','188px'); 
+                  jQuery('.index-slider').css('margin-top','188px');
+                  jQuery('.index-slider').css('margin-bottom','-46px');
+                 }
+              }
+    
+      {% if customer %}
+           jQuery.ajax({
+
+             method:'POST',
+             url: 'https://www.sanadig.com/proxy/firstOrder.php',
+             data: {customerId:customerId},
+             success:function(resp){
+
+               if(resp==0)
+               {
+                 jQuery('.top-stick-head').css('display','block'); 
+               }
+               else
+               {
+                 localStorage.setItem('top_header',1);
+                 jQuery('.index-slider').css('margin-top','153px'); 
+                 jQuery('.index-slider').css('margin-bottom','-46px');
+               }
+
+             }
+          });
+      {% endif %}
+    } 
+      
+      
+            if(id=='sanadeeg-com' || id =='your-shopping-cart')
+            {
+              
+              jQuery.ajax({
+                      method:'POST',
+                      url: 'https://www.sanadig.com/proxy/getShipping.php',
+                      success:function(resp){ 
+                       localStorage.setItem('shippingPrice',resp);
+                    }
+              });
+                {% if customer %}
+                var customerId={{ customer.id }};
+                jQuery.ajax({
+
+                 method:'POST',
+                 url: 'https://www.sanadig.com/proxy/lifetime_save.php',
+                 data: {customerId:customerId},
+                 success:function(resp){
+                  if(resp=="")
+                    {
+                     jQuery('#lifetime_top_price').text('0 Dhs');
+                     localStorage.setItem('total_save','0');
+                     jQuery('#total_save').text('0');
+                    }
+                    else
+                    {
+                      jQuery('#lifetime_top_price').text(resp+' Dhs');
+                      localStorage.setItem('total_save',resp);
+                      jQuery('#total_save').text(resp);
+                    }
+                 }
+              });
+               {% endif %}
+    
+   }
+      else
+      {
+         {% if customer %}
+         var customerId={{ customer.id }};
+         {% endif %}
+         var top_header= localStorage.getItem('top_header');
+     
+          if(top_header == 1)
+          {
+            jQuery('.index-slider').css('margin-top','153px');
+            jQuery('.index-slider').css('margin-bottom','-46px');
+          }
+          else
+          {
+               {% if customer %}
+
+           jQuery.ajax({
+
+             method:'POST',
+             url: 'https://www.sanadig.com/proxy/firstOrder.php',
+             data: {customerId:customerId},
+             success:function(resp){
+
+               if(resp==0)
+               {
+                 jQuery('.top-stick-head').css('display','block'); 
+               }
+               else
+               {
+                 localStorage.setItem('top_header',1);
+                 jQuery('.index-slider').css('margin-top','153px'); 
+                 jQuery('.index-slider').css('margin-bottom','-46px');
+               }
+
+             }
+          });
+            {% endif %}
+          }
+      }
+      if(id=='view-order')
+      {
+        //jQuery('main nav').html("<a href='https://sanadeeg.com/account'>Order History</a>");
+        
+      }
+      
+       if(id =='your-shopping-cart')
+            {
+              var t_price = jQuery('.cat-total-row .text-right .cart-subtotal .cart-subtotal--price span.visually-hidden').text();
+  	  		  var t_prce=t_price.split("Dhs.");
+      		  var subprice=t_prce[1];
+      		  var total_price = parseFloat(subprice.replace(/,/g, ''));
+      		  var sub_total=parseInt(total_price);
+              console.log(sub_total);
+      
+      jQuery.ajax({
+      		
+        method:'Post',
+        url:'https://www.sanadig.com/proxy/checkFirstDiscount.php',
+        data:{customerId:customerId},
+        success:function(respp)
+        {
+          if(respp==0)
+          {     
+            if(sub_total >= '250'){
+              jQuery('.cart-form ').attr('action','/cart?discount=WELCOME_DISCOUNT');
+            }else{
+                jQuery('.cart-form ').attr('action','/cart?discount=0');
+            }
+          }
+          
+          else if(respp=='refer')
+          {
+           if(sub_total >= '250'){
+                  jQuery('.cart-form ').attr('action','/cart?discount=WELCOME_DISCOUNT_REFERRED');          
+              }else{
+                  jQuery('.cart-form ').attr('action','/cart?discount=0');
+              }
+          }
+          else if(respp=='nothing')
+          {
+            
+          }
+          else
+          {
+           	jQuery('.cart-form ').attr('action','/cart?discount='+respp);
+
+          }
+          
+         jQuery('.cart-form ').attr('disabled',false);
+        }
+        
+      });
+            }
+               
+      
+      
+     var searchBar= jQuery('.search-bar').find('input').next();
+      
+      jQuery(searchBar[0]).blur(function(){
+        	jQuery('.search-bar').find('input').next().val("");
+      });
+    });
+    
+    
+    
+    
+    
+  </script>
+  {% include 'buddha-megamenu' %}
+
+<script  type="text/javascript">
+  jQuery(document).ready(function(){
+    {% if customer %}
+   			
+
+    	var lifetime_savings=localStorage.getItem('total_save');
+    		if(lifetime_savings != null)
+            {
+              var lifetime = lifetime_savings;
+            }
+            else
+            {
+                var lifetime=0; 
+            }
+     jQuery('#lifetime_top_price').text(lifetime+' Dhs');
+    
+   
+              
+    
+    
+    {% else %}
+     jQuery('.top-stick-head').css('display','block'); 
+     localStorage.removeItem('total_save');	
+ 	 localStorage.removeItem('orderskk');	
+     localStorage.removeItem('referSpan');
+      localStorage.removeItem('top_header');
+    {% endif %}       
+   
+    var windowWidth = jQuery(window).width(); 
+	var windowHeight = jQuery(window).height();
+      
+      if(windowWidth <= 1024 )
+        {
+          jQuery('.slider-wrapper').css('display','none');
+          
+        }
+    
+    
+    
+    jQuery('#accessibleNav li.site-nav--has-dropdown') .click(function(e){
+      e.preventDefault();
+      var getOrderID =localStorage.getItem('show_dropdown_id');
+      if (getOrderID == null){
+        localStorage.setItem('show_dropdown_id', 'kumar');
+        
+        
+      }else{
+        jQuery(this).removeClass('show-dropdown');
+        localStorage.removeItem('show_dropdown_id');
+      }
+     
+    });
+    
+    
+     jQuery('#mobile-cust-menu>a').click(function(){       window.location.href= this.href;     });
+    
+});
+  
+  jQuery('body').on('click','header a',function(){
+      var windowWidth = jQuery(window).width(); 
+	  var windowHeight = jQuery(window).height();
+     	if(windowWidth <= 1024 )
+        { 
+         	//window.location.href="https://sanadeeg.com/cart";
+            //return false;
+        }
+  });
+  
+  
+    jQuery('body').on('click','#mobileNavBar .display-table-cell .cart-toggle',function(){
+      
+      var windowWidth = jQuery(window).width(); 
+	  var windowHeight = jQuery(window).height();
+      
+      if(windowWidth <= 1024 )
+        {
+          window.location.href="https://sanadeeg.com/cart"; 
+          return false;
+        }
+     	
+  });
+  
+  
+  jQuery(function(){
+  new Clipboard('.copy-text');
+});
+  
+  jQuery('body').on('click','.dropbtn',function(){
+    
+    	var Class = jQuery('.dropdown-content').hasClass('hide');
+    if(Class == true){
+    	jQuery('.dropdown-content').removeClass('hide');
+    }
+    else {
+    	jQuery('.dropdown-content').addClass('hide');
+    }
+    	
+  });
+ 
+jQuery(document).ready(function(){
+
+  var id=jQuery('#customerId').val();
+  var email=jQuery('#customerEmail').val();
+  var customerName=jQuery('#customerName').val();
+  var link=localStorage.getItem('link');
+  var allOrders=localStorage.getItem('orderskk');
+  var lifetime_savings=localStorage.getItem('total_save');
+  jQuery.ajax({
+      method:'POST',
+      url: '{{ settings.app_url_link }}/proxy/addUserInDb.php',
+      data:{id:id,email:email,customerName:customerName,link:link},
+      success:function(resp){
+      	if(resp!=0)
+        {
+          jQuery('#link').text(resp);
+          jQuery('#referSpan').css('display','block');
+          localStorage.setItem('referSpan',resp);
+        }
+    }  
+  });
+   
+  
+  if(id != ''){
+   jQuery.ajax({
+      method:'POST',
+      url: 'https://www.sanadig.com/proxy/demo.php',
+      data:{id:id},
+      success:function(resp){
+      	console.log(resp);
+    }  
+  });
+    jQuery.ajax({
+      method:'POST',
+      url: 'https://www.sanadig.com/proxy/savings_deduction.php',
+      data:{id:id},
+      success:function(resp){
+    }  
+  });
+  	jQuery.ajax({
+      method:'POST',
+      url: 'https://www.sanadig.com/proxy/custmerOrders.php',
+      data:{id:id},
+      success:function(resp){
+      		console.log(resp);
+    	}  
+  	});
+  }
+});
+  </script> 
+<script type='text/javascript'>
+  jQuery(document).ready(function(){
+      
+       $('ul.advanced-filters').each(function(){
+    var LiN = $(this).find('li').length;
+    console.log(LiN);
+    if( LiN > 4){    
+      $('li', this).eq(3).nextAll().hide().addClass('toggleable');
+      $(this).append('<li class="more shwmoretext">More...</li>');    
+    }
+
+  });
+  $('ul.advanced-filters').on('click','.more', function(){
+  
+    if( $(this).hasClass('less') ){    
+      $(this).text('More...').removeClass('less');    
+    }else{
+      $(this).text('Less...').addClass('less'); 
+    }
+
+    $(this).siblings('li.toggleable').slideToggle();
+
+  });
+  });
+  
+  var mywindow = $(window);
+var mypos = mywindow.scrollTop();
+var up = false;
+var newscroll;
+mywindow.scroll(function () {
+    newscroll = mywindow.scrollTop();
+    if(newscroll > 200 ){
+      $('#useJSONP').slideUp();
+    }else {
+      $('#useJSONP').slideDown();
+    }
+     if (newscroll > mypos && !up) {
+        $('.nav-bar').stop().slideToggle();
+        $('.site-header').addClass('header-shadow');
+      $('#mobileNavBar.my-mobile-nav-bar').addClass('po-fix');
+        up = !up;
+    } else if(newscroll < mypos && up) {
+        $('.nav-bar').stop().slideToggle();
+        $('.site-header').removeClass('header-shadow');
+      $('#mobileNavBar.my-mobile-nav-bar').removeClass('po-fix');
+        up = !up;
+    }
+    mypos = newscroll;
+});
+  
+  
+</script> 
+
+  <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.12/clipboard.min.js"></script>
+{% include 'swymSnippet' %}
+
+{% include 'sca-quick-view-template' %} 
+ </body>
+</html>
+<script type="text/javascript">
+  jQuery(document).ready(function(){
+    jQuery('.mobile-header').hide();
+    jQuery('.icon-search').click(function(){
+      jQuery('.mobile-header').show();
+      jQuery('.my-mobile-nav-bar').hide();
+    });
+    jQuery('.glyphicon-remove').on('click',function(){
+    	jQuery('.mobile-header').hide();
+      	jQuery('.my-mobile-nav-bar').show();
+    });
+   
+    jQuery('header').find('form').addClass('suggestionbox');
+    jQuery('.suggestionbox').find('input[type="search"]').addClass('mylatestsearchbox');
+    jQuery('<div class=nesermain><div class=serch><span class = prod><p>Products:</p><ul class="results myUL"></ul><div class="pro-div">No Results</div></span><ul class=count></ul><span class = colle><p>Collections:</p><ul class="newcollection collUL"></ul><div class="div">No Results</div></span></div></div>').insertAfter('.mylatestsearchbox');
+    jQuery(document).mouseup(function(e) {
+      var container = jQuery('.serch, .prod, .colle, .count');
+      if (!container.is(e.target) && container.has(e.target).length === 0){
+        container.hide();
+      }
+    });
+    $.ajax({
+      type:'get',
+      url:'https://eprofitanalyzer.com/SearchApp/app/searhnew.php',
+      beforeSend: function(){      	
+        jQuery('.nesermain').hide();
+      },
+      success:function(data){       
+        jQuery('header').find('form[action="/search"]').addClass('loadAllData');
+        jQuery('.loadAllData').attr('action','/pages/mysearch');
+        var alldata = '<script id="data" type="application/json">'+data+'<'+'/script>';
+        $('head').append(alldata);        
+        var newObj = JSON.parse(jQuery("#data").html());
+        localStorage.setItem('searched-items', JSON.stringify(newObj));
+      }      
+    });
+    
+    jQuery('.serch, .prod, .colle, .count').hide();
+    jQuery('.mylatestsearchbox').keydown(function(){
+      var domain = location.hostname;
+      var searchClass = jQuery(this).attr('class');
+      var relt = searchClass.split(' ');
+      var newSearchClass = '';
+      for(var k=0; k < relt.length; k++){
+        newSearchClass += '.'+relt[k];
+      }
+      var obj = JSON.parse(jQuery("#data").html());
+      
+      localStorage.setItem('searched-items', JSON.stringify(obj));
+      var html = '';
+      var newcoll = '';
+      var arr = obj.products;
+     
+      for (var i = 0; i < arr.length; i++) {
+        var title = arr[i].title;
+        var res = title.substr(0,50);
+        var handle = arr[i].handle;
+        var variants = arr[i].variants;
+        var rate = '';
+        var image = arr[i].image;
+        var source = '';
+        for(var img in image){
+          source = image.src;
+        }
+        for (var vari in variants) {
+          rate = variants[vari].price;
+        }
+        html += '<li><a href=https://'+domain+'/products/'+handle+'><span class=thumbnail><img src='+source+' width=50px; height=50px /></span><span class=title>'+res+'....</span><span class=price>Dhs.'+rate+'</span></a><span class=tags style="display:none;">' + arr[i].tags + '<span></li>';
+      }
+        for(var coll in obj.collections){
+          var coltextlimit = obj.collections[coll].title;
+          var reslt = coltextlimit.substr(0,50);
+          newcoll += '<li><a href=https://'+domain+'/collections/'+obj.collections[coll].handle+'><span class=title>'+reslt+'....</span></a></li>';
+        }
+      
+      jQuery('.results').html(html);
+      jQuery('.newcollection').html(newcoll);
+      jQuery('.serch, .prod, .colle, .count').hide();
+	  jQuery('.nesermain').show();
+    });
+    
+  });
+  jQuery('.div').hide();
+  jQuery('.pro-div').hide();
+  
+ var delay = (function(){
+   var timer = 0;
+   return function(callback, ms){
+     clearTimeout (timer);
+     timer = setTimeout(callback, ms);
+   };
+ })(); 
+  
+ function SearchFunction(){
+   delay(function(){
+    var input, filter, ul, li, a, colul, colli, j, count, i;
+    input = jQuery('.myInput').val();
+   	var inpLength = input;
+    filter = input.toUpperCase();
+   	ul = jQuery('.myUL');
+    li = ul.find('li');
+   	colul = jQuery('.collUL');
+   	colli = colul.find("li");
+   	var searchLength=0;
+    for (i = 0; i < li.length; i++) {
+      	arrTags = li[i].getElementsByClassName('tags')[0].innerHTML;
+        arrTags = arrTags.split(',');
+      	var tags = [];      
+        for(j=0; j<arrTags.length; j++)
+        {
+            if( arrTags[j].indexOf('&amp;') > -1 )
+            {
+                temp = arrTags[j].split('&amp;');
+                for(k=0; k<temp.length; k++)
+                {
+                    tags.push( jQuery.trim(temp[k]) );
+                }
+            }
+            else
+            {
+                tags.push( jQuery.trim(arrTags[j]) );
+            }
+        }
+        for(j=0; j<tags.length; j++)
+        {
+            if( tags[j].indexOf('<span></span>') > -1 )
+            {
+                tags[j] = tags[j].substr(0, tags[j].indexOf('<span></span>'));
+            }
+          	tags[j] = tags[j].toUpperCase();
+        }      
+        a = li[i].getElementsByTagName("a")[0];
+    	
+      if ( ((a.innerHTML.toUpperCase().indexOf(filter) > -1) || (jQuery.inArray(filter, tags) > 0) ) && searchLength< 7){
+             li[i].style.display = "block";       
+        	searchLength++;
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+      
+   	for (j = 0; j < colli.length; j++) {      
+        a = colli[j].getElementsByTagName("a")[0];
+        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            colli[j].style.display = "";
+        } else {
+            colli[j].style.display = "none";           
+        }
+    }
+   	var k = jQuery(".collUL").find(jQuery('li[style*="display: none"]'));
+   	if(k.length == colli.length && inpLength.length > 2){
+     	jQuery('.div').show();
+   	}
+   	else{
+     	jQuery('.div').hide();
+   	}  
+   	var mpro = jQuery(".myUL").find(jQuery('li[style*="display: none"]'));
+   	if(mpro.length == li.length){
+     	jQuery('.pro-div').show();
+   	}
+   	else{
+     	jQuery('.pro-div').hide();
+   	}     
+   	if(inpLength.length > 2){
+   		jQuery('.serch, .prod, .colle, .count').show();     
+   	}
+   	else{
+   		jQuery('.serch, .prod, .colle, .count').hide();     
+   	}
+   	var textValue = jQuery('.mylatestsearchbox').val();
+   	var doman = location.hostname;     
+   	jQuery('.count').html('<li><a href=https://'+doman+'/pages/mysearch?type=tags&q='+textValue+'>See all results</a><li>');   
+
+ 	},500);  
+ }
+ 
+var dely = (function(){
+   var time = 0;
+   return function(callback, ms){
+     clearTimeout (time);
+     time = setTimeout(callback, ms);
+   };
+ })();   
+  
+function mobileSearchFunction(){
+  dely(function(){
+    var input, filter, ul, li, a, colul, colli, j, count, i;
+    input = jQuery('.mobile-input').val();
+   	var inpLength = input;
+    filter = input.toUpperCase();
+   	ul = jQuery('.myUL');
+    li = ul.find('li');
+  	colul = jQuery('.collUL');
+   	colli = colul.find("li");
+   	var seaLength=0;
+    for (i = 0; i < li.length; i++) {
+      	arrTags = li[i].getElementsByClassName('tags')[0].innerHTML;
+        arrTags = arrTags.split(',');
+      	var tags = [];      
+        for(j=0; j<arrTags.length; j++)
+        {
+            if( arrTags[j].indexOf('&amp;') > -1 )
+            {
+                temp = arrTags[j].split('&amp;');
+                for(k=0; k<temp.length; k++)
+                {
+                    tags.push( jQuery.trim(temp[k]) );
+                }
+            }
+            else
+            {
+                tags.push( jQuery.trim(arrTags[j]) );
+            }
+        }
+
+        for(j=0; j<tags.length; j++)
+        {
+            if( tags[j].indexOf('<span></span>') > -1 )
+            {
+                tags[j] = tags[j].substr(0, tags[j].indexOf('<span></span>'));
+            }
+          	tags[j] = tags[j].toUpperCase();
+        }        
+        a = li[i].getElementsByTagName("a")[0];
+     	
+      if ( ((a.innerHTML.toUpperCase().indexOf(filter) > -1) || (jQuery.inArray(filter, tags) > 0))){
+        	li[i].style.display = "block";   
+        	    
+        } else {
+            li[i].style.display = "none";          
+        }
+    } 
+  	for (j = 0; j < colli.length; j++) {      
+        a = colli[j].getElementsByTagName("a")[0];
+        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            colli[j].style.display = "";
+        } else {
+            colli[j].style.display = "none";           
+        }
+    }
+  	var k = jQuery(".collUL").find(jQuery('li[style*="display: none"]'));
+   	if(k.length == colli.length && inpLength.length > 2){
+     	jQuery('.div').show();
+   	}
+   	else{
+     	jQuery('.div').hide();
+   	}  
+   	var mpro = jQuery(".myUL").find(jQuery('li[style*="display: none"]'));
+   	if(mpro.length == li.length){
+     	jQuery('.pro-div').show();
+      	jQuery('.results').attr('style','height:0px;');
+   	}
+   	else{
+      	console.log(mpro.length);
+     	jQuery('.pro-div').hide();
+      	jQuery('.results').attr('style','height:363px;overflow-y:hidden;');
+   	}
+   	if(inpLength.length > 2){
+   		jQuery('.serch, .prod, .colle, .count').show();     
+   	}
+   	else{
+   		jQuery('.serch, .prod, .colle, .count').hide();     
+   	}
+   	var textValue = jQuery('.mylatestsearchbox').val();
+   	var doman = location.hostname;     
+   	jQuery('.count').html('<li><a href=https://'+doman+'/pages/mysearch?type=tags&q='+textValue+'>See all results</a><li>');   
+	
+    },500);  
+  }
+  
+
+</script>

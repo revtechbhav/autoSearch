@@ -1,0 +1,33 @@
+
+
+<div class="grid inner-page-top">
+
+  <div class="grid-item large--two-thirds push--large--one-sixth">
+
+   	 <div id="wrapper">
+
+        <div class="slider-wrapper theme-default">
+            <div id="slider" class="nivoSlider">
+                <img src="{{ 'slide_1.jpg' | asset_url }}" data-thumb="{{ 'slide_1.jpg' | asset_url }}" alt="" />
+                <img src="{{ 'slide_2.jpg' | asset_url }}" data-thumb="{{ 'slide_2.jpg' | asset_url }}" alt="" />
+                <img src="{{ 'slide_3.jpg' | asset_url }}" data-thumb="{{ 'slide_3.jpg' | asset_url }}" alt="" />
+                <img src="{{ 'slide_4.jpg' | asset_url }}" data-thumb="{{ 'slide_4.jpg' | asset_url }}" alt=""  />
+            </div>
+        </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+  <script src="{{ settings.app_url_link }}/slider/Nivo-Slider/demo/scripts/jquery-1.9.0.min.js"></script>
+
+  <script src="{{ settings.app_url_link }}/slider/Nivo-Slider/jquery.nivo.slider.js"></script>
+
+<script type="text/javascript">
+    jQuery(window).load(function() {
+      	alert('ok');
+        jQuery('#slider').nivoSlider();
+    });
+    </script>

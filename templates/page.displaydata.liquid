@@ -1,0 +1,182 @@
+{% include 'breadcrumb' %}
+
+<div class="grid inner-page-top">
+  <div class="grid-item large--two-thirds push--large--one-sixth">
+    <h1 style="display:none;">{{ page.title }}</h1>
+    <div class="rte">
+      {{ page.content }}
+    </div>    
+  </div>
+</div>
+<div class="grid-uniform gridproductlist" onload=loadingAjax(myDiv); id="myproductdiv">	
+      <div id=mydiv>
+        <div class=loaderr style=display:none;><center><h1 style="color:#84c341;">Please wait we are getting best results for you...</h1><img src="{{ 'loading_image.gif' | asset_url }}" /></center></div>
+      </div>  	
+</div>
+
+<div class="text-center mypaginate">
+  <ul id="pagin" class="pagination-custom"></ul>
+</div>
+<script type="text/javascript">
+  jQuery(window).load(function(){
+    if(localStorage.getItem("searched-items") === null){
+		var url = window.location.href;
+        var segment = url.split('=').reverse()[0];
+      	console.log("localstorage is not set");
+        $.ajax({
+          type:'get',
+          url:'https://eprofitanalyzer.com/SearchApp/app/searhnew.php',
+          data:{
+            'searchkey':segment
+          },
+          beforeSend: function(){
+            $('.loaderr').show();
+          },  
+          success:function(data){
+            $('.loaderr').hide();
+            var obj = jQuery.parseJSON(data);
+            var html = '';
+            var newcoll = '';
+            var arr = obj.products;
+            var shop = obj.shop;
+
+            for (var i = 0; i < arr.length; i++) {
+                var title = arr[i].title;
+                var handle = arr[i].handle;
+                var variants = arr[i].variants;
+                var rate = '';
+                var variant_id = '';
+                var image = arr[i].image;	
+                var source = '';
+                for(var img in image){
+                    source = image.src;          	
+                }
+                for (var vari in variants) {
+                    rate = variants[vari].price;
+
+                }
+                var tags = arr[i].tags;
+                var tagsTrim = tags.trim();
+                var tagsSplit = tags.split(',');
+                for(var l=0; l<tagsSplit.length; l++){
+                    var tagsSplitTrim = tagsSplit[l].trim();
+                    var newSegment = segment.trim();
+                  	console.log(newSegment);
+                    //tagsSplitTrim.match(newSegment);	
+                    if(tagsSplitTrim.match(newSegment) == newSegment || title.toLowerCase().indexOf(newSegment) != -1 ){
+                        console.log('hello');
+                      	html += '<div class="line-content grid-item search-result large--one-fifth medium--one-third small--one-half"><a href="https://'+shopUrl+'/products/'+handle+'" class="product-grid-item"><div class="product-grid-image" style="height: 233px;"><div class="product-grid-image--centered"><img src="'+source+'" /></div></div><p>'+title+'</p><span style="color:#999"></span><div class="product-item--price"><span class="h1 medium--left"><span class="visually-hidden">Regular price</span><small aria-hidden="true">Dhs.'+rate+'</small><span class="visually-hidden">Dhs.'+rate+'</span><br><span class="tags" style="display:none;">'+tags+'</span></span></div><div class="search-cart-button"><form action="/cart/add" method="post" enctype="multipart/form-data" id="addToCartForm"><button type="submit" name="add" class="buy-btn" id="addToCart"><span class="icon"></span><span id="addToCartText">Buy</span></button></form></div></a></div>';       
+                      	break;
+                    }
+
+                }
+
+            } 
+              $('.grid-uniform').html(html);
+
+
+              var pageSize = 20;
+              var pageCount =  $(".grid-uniform > .line-content").length / pageSize;
+              console.log(pageCount);
+              if(pageCount == 0){
+                jQuery('#myproductdiv').append('<center><div><h1 style="color:#84c341;">YOUR SEARCH FOR "'+segment+'" DID NOT YIELD ANY RESULTS.</h1></div></center>');
+              }
+              else{
+                  console.log('bye');
+              }	
+              for(var i = 0 ; i<pageCount;i++){
+
+                $("#pagin").append('<li><a href="#">'+(i+1)+'</a></li> ');
+              }
+              $("#pagin li").first().find("a").addClass("active");
+                showPage = function(page) {
+                $(".line-content").hide();
+                $(".line-content").each(function(n) {
+                  if (n >= pageSize * (page - 1) && n < pageSize * page)
+                    $(this).show();
+                });        
+              }
+              showPage(1);
+                $("#pagin li a").click(function() {
+                $("#pagin li a").removeClass("active");
+                $(this).addClass("active");
+                showPage(parseInt($(this).text())) 
+              });
+          }      
+        });
+    }
+    else{
+      console.log("local storage is set");
+      var segment='';
+      var url = window.location.href;
+      segment = url.split('=').reverse()[0];
+      var getData = localStorage.getItem("searched-items");
+      var obj = JSON.parse(getData);
+      var html = '';
+      var newcoll = '';
+      var arr = obj.products;
+      var shopUrl = location.hostname;
+      var shop = obj.shop;
+
+        for (var i = 0; i < arr.length; i++) {
+            var title = arr[i].title;
+            var handle = arr[i].handle;
+            var variants = arr[i].variants;
+            var rate = '';
+            var variant_id = '';
+            var image = arr[i].image;	
+            var source = '';
+            for(var img in image){
+                source = image.src;          	
+            }
+            for (var vari in variants) {
+                rate = variants[vari].price;
+
+            }
+            var tags = arr[i].tags;
+            var tagsTrim = tags.trim();
+            var tagsSplit = tags.split(',');
+            for(var l=0; l<tagsSplit.length; l++){
+                var tagsSplitTrim = tagsSplit[l].trim();
+                var newSegment = segment.trim();
+                //tagsSplitTrim.match(newSegment);	
+                if(tagsSplitTrim.match(newSegment) == newSegment || title.toLowerCase().indexOf(newSegment) != -1 ){
+                    html += '<div class="line-content grid-item search-result large--one-fifth medium--one-third small--one-half"><a href="https://'+shopUrl+'/products/'+handle+'" class="product-grid-item"><div class="product-grid-image" style="height: 233px;"><div class="product-grid-image--centered"><img src="'+source+'" /></div></div><p>'+title+'</p><span style="color:#999"></span><div class="product-item--price"><span class="h1 medium--left"><span class="visually-hidden">Regular price</span><small aria-hidden="true">Dhs.'+rate+'</small><span class="visually-hidden">Dhs.'+rate+'</span><br><span class="tags" style="display:none;">'+tags+'</span></span></div><div class="search-cart-button"><form action="/cart/add" method="post" enctype="multipart/form-data" id="addToCartForm"><button type="submit" name="add" class="buy-btn" id="addToCart"><span class="icon"></span><span id="addToCartText">Buy</span></button></form></div></a></div>';       
+                  break;
+                }
+
+            }
+
+        }
+
+      $('.grid-uniform').html(html);
+      var pageSize = 20;
+      var pageCount =  $(".grid-uniform > .line-content").length / pageSize;
+      console.log(pageCount);
+      if(pageCount == 0){
+        jQuery('#myproductdiv').append('<center><div><h1 style="color:#84c341;">YOUR SEARCH FOR "'+segment+'" DID NOT YIELD ANY RESULTS.</h1></div></center>');
+      }
+      else{
+          console.log('bye');
+      }
+      for(var i = 0 ; i<pageCount;i++){
+
+        $("#pagin").append('<li><a href="#">'+(i+1)+'</a></li> ');
+      }
+      $("#pagin li").first().find("a").addClass("active");
+      showPage = function(page) {
+        $(".line-content").hide();
+        $(".line-content").each(function(n) {
+          if (n >= pageSize * (page - 1) && n < pageSize * page)
+            $(this).show();
+        });        
+      }
+      showPage(1);
+      $("#pagin li a").click(function() {
+        $("#pagin li a").removeClass("active");
+        $(this).addClass("active");
+        showPage(parseInt($(this).text())) 
+      });
+    }  
+  });  
+</script>

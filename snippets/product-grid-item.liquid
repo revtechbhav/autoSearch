@@ -1,0 +1,112 @@
+
+{% unless grid_item_width %}
+  {% assign grid_item_width = 'large--one-quarter medium-down--one-half' %}
+{% endunless %}
+
+{% unless current_collection %}
+  {% assign current_collection = collection %}
+{% endunless %}
+
+{% assign on_sale = false %}
+{% if product.compare_at_price > product.price %}
+  {% assign on_sale = true %}
+{% endif %}
+
+{% assign sold_out = true %}
+{% if product.available  %}
+  {% assign sold_out = false %}
+{% endif %}
+
+{% comment %}
+  Select the product image size from settings.
+{% endcomment %}
+{% assign image_size = settings.collection_prod_image_sizes %}
+
+<div class="grid-item {{ grid_item_width }}{% if sold_out %} sold-out{% endif %}{% if on_sale %} on-sale{% endif %}">
+
+  <a href="{{ product.url | within: current_collection }}" class="product-grid-item">
+    <div class="product-grid-image">
+      <div class="product-grid-image--centered">
+        <div class="gallery-image">
+          {% if product.compare_at_price_max > product.price %}
+              <div class="sale-badge"><img src="{{ 'Sale_badge.png' | asset_url }}" ></div>
+          {% endif %}
+        </div>
+        {% if sold_out %}
+          <div class="badge badge--sold-out"><span class="badge-label">{{ 'products.product.sold_out' | t }}</span></div>
+        {% endif %}
+        <img src="{{ product.featured_image.src | img_url: image_size }}" alt="{{ product.featured_image.alt | escape }}">
+      </div>
+    </div>
+    <div class="product-main-des">
+      
+      <p class="main-product-title">{{ product.title | truncate: 50 }}</p>
+      <p class="mob-product-title">{{ product.title | truncate: 20 }}</p>
+     
+       <span style="color:#999;" class="main-product-span">	
+          {% assign sanadeeg_count = product.metafields.sanadeeg.count %}
+               {{ sanadeeg_count }}
+          </span>
+      <span style="color:#999;" class="mob-product-span">	
+          {% assign sanadeeg_count = product.metafields.sanadeeg.count %}
+               {{ sanadeeg_count | truncate: 15 }}
+          </span>
+     </div>
+    <div class="product-item--price">
+      <span class="h1 medium--left">
+        {% if on_sale %}
+          <span class="visually-hidden">{{ "products.general.sale_price" | t }}</span>
+        {% else %}
+          <span class="visually-hidden">{{ "products.general.regular_price" | t }}</span>
+        {% endif %}
+        {% include 'price' with product.price %}
+        
+        {% if on_sale and settings.product_show_compare_at_price %}
+         <!--span class="sale-sep">.</span-->
+          <small>
+            <s>
+              <span class="visually-hidden">{{ "products.general.regular_price" | t }}</span>
+              {% include 'price' %}
+            </s>
+          </small>
+        {% endif %}
+        
+        {% if product.metafields.sanadeeg.save != null %}
+     
+         <br>
+        <span class="sale-tag">	
+        {% assign sanadeeg_save = product.metafields.sanadeeg.save %}
+        	SAVE {{ sanadeeg_save }}
+        </span>
+        
+         {% endif %}
+        
+         {% if on_sale and settings.product_show_saved_amount %}
+     
+        <!--span class="sale-tag{% unless settings.product_show_compare_at_price %} medium--right{% endunless %}{% if settings.product_reviews_enable %} has-reviews{% endif %}">
+          {% assign compare_price = product.compare_at_price %}
+          {% assign product_price = product.price %}
+          {% include 'price-sale' %}
+        </span-->
+       
+      {% endif %}
+        
+        
+      </span>
+
+     
+   
+      {% include 'add-to-cart' %}
+      
+    </div>
+
+    {% if settings.product_reviews_enable %}
+      <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+    {% endif %}
+  </a>
+	   {% include 'ShopList' %}
+<!--   <button type="button" name="add" data-productid="{{ product.id }}" data-customerid="{{ customer.id }}" class="btn buy-btn my-btn addcart-j" >
+            <span class="icon"></span>
+            <span class="ajaxcartbutton">Add to cart</span>
+          </button> -->
+</div>

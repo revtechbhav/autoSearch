@@ -1,0 +1,11 @@
+<form action="/search" method="get" class="search-bar" role="search">
+  <button type="submit" class="search-bar--submit icon-fallback-text">
+    <span class="icon icon-search" aria-hidden="true"></span>
+    <span class="fallback-text">{{ 'layout.search_bar.submit' | t }}</span>
+  </button>
+ <input type="hidden" name="type" value="tags">
+
+  <input onkeyup="SearchFunction()" id="" autocomplete="off" type="search" class="mobile-search-box myInput" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'layout.search_bar.placeholder' | t }}" aria-label="{{ 'layout.search_bar.placeholder' | t }}">
+<!--     <input autocomplete="off" type="search" class="mobile-search-box" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'layout.search_bar.placeholder' | t }}" aria-label="{{ 'layout.search_bar.placeholder' | t }}">
+ -->
+</form>

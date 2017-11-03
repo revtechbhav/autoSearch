@@ -1,0 +1,384 @@
+{% include 'breadcrumb' %}
+
+  {{ 'circle.css' | asset_url | stylesheet_tag }}
+{% assign sanadeeg_unit = product.metafields.sanadeeg.retail_unit %}
+{% assign market_price = product.metafields.sanadeeg.market_retail_unit_price %}
+{% assign sanadeeg_price = product.metafields.sanadeeg.retail_unit_price %}
+{% assign sanadeeg_save = product.metafields.sanadeeg.save %}
+{% assign sanadeeg_count = product.metafields.sanadeeg.count %}
+
+
+{% if product.metafields.sanadeeg.retail_unit != null %}
+{% assign sanadeeg_unit = product.metafields.sanadeeg.retail_unit  %}
+{% else %}
+{% assign sanadeeg_unit = '' %}
+{% endif %}
+
+{% if product.metafields.sanadeeg.market_retail_unit_price != null %}
+{% assign market_price = product.metafields.sanadeeg.market_retail_unit_price | append: ' Dhs' %}
+{% else %}
+{% assign market_price = '' %}
+{% endif %}
+
+{% if product.metafields.sanadeeg.retail_unit_price != null %}
+{% assign sanadeeg_price = product.metafields.sanadeeg.retail_unit_price | append: ' Dhs' %}
+{% else %}
+{% assign sanadeeg_price = '' %}
+{% endif %}
+
+{% if product.metafields.sanadeeg.save != null %}
+{% assign sanadeeg_save = product.metafields.sanadeeg.save  %}
+{% else %}
+{% assign sanadeeg_save = '' %}
+{% endif %}
+
+{% if product.metafields.sanadeeg.count != null %}
+{% assign sanadeeg_count = product.metafields.sanadeeg.count  %}
+{% else %}
+{% assign sanadeeg_count = '' %}
+{% endif %}
+
+<div class="grid product-top-space" itemscope itemtype="http://schema.org/Product">
+  <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
+  <meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
+
+  <div class="grid-item large--two-fifths">
+    <div class="grid">
+      <div class="grid-item large--eleven-twelfths text-center">
+        <div class="product-photo-container" id="productPhoto">
+          {% if product.compare_at_price_max > product.price %}
+          <div class="sale-badge"><img src="{{'Sale_badge.png' | asset_url}}"></div>
+          {% endif %}
+          {% assign featured_image = product.selected_or_first_available_variant.featured_image | default: product.featured_image %}
+          <img id="productPhotoImg" src="{{ featured_image | img_url: 'large' }}" alt="{{ featured_image.alt | escape }}" {% if settings.product_image_zoom_enable %} data-zoom="{{ featured_image | img_url: '1024x1024' }}"{% endif %}>
+        </div>
+      
+        {% if product.images.size > 1 %}
+          <ul class="product-photo-thumbs grid-uniform" id="productThumbs">
+
+            {% for image in product.images %}
+              <li class="grid-item medium-down--one-quarter large--one-quarter">
+                <a href="{{ image.src | img_url: 'large' }}" class="product-photo-thumb">
+                  <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
+                </a>
+              </li>
+            {% endfor %}
+
+          </ul>
+        {% endif %}
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="grid-item large--three-fifths new-grid-item">
+
+    <h1 class="h2" itemprop="name">{{ product.title }}</h1>
+		
+    <p style="margin:0;font-size:18px">{{ sanadeeg_count }}</p>
+    {% if settings.product_vendor_enable %}
+      <p class="product-meta" itemprop="brand">{{ product.vendor }}</p>
+    {% endif %}
+
+    <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+
+      {% assign variant = product.selected_or_first_available_variant %}
+
+      <meta itemprop="priceCurrency" content="{{ shop.currency }}">
+      <meta itemprop="price" content="{{ variant.price | divided_by: 100.00 }}">
+
+      <ul class="inline-list product-meta">
+        <li>
+          <span id="productPrice" class="h1">
+            {% include 'price' with variant.price %}
+          </span>
+        </li>
+      
+       
+        
+                 {% if product.compare_at_price_max > product.price %}
+        			 <!--li class="product-meta--review">
+                       <s style="color:red;font-size:24px;font-weight:bold">
+                        <span class="visually-hidden">Regular price</span>
+                        <small aria-hidden="true"> {% include 'price' with product.compare_at_price_max %}</small>
+                        <span class="visually-hidden"> {% include 'price' with product.compare_at_price_max %}</span>
+                      </s>                    
+        			</li-->
+				 {% endif %}
+        {% if settings.product_reviews_enable %}
+          <li class="product-meta--review">
+            <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+          </li>
+        {% endif %}
+      </ul>
+
+      <hr id="variantBreak" class="hr--clear hr--small">
+
+      <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
+
+      <form action="/cart/add" method="post" enctype="multipart/form-data" id="addToCartForm">
+        <select name="id" id="productSelect" class="product-variants">
+          {% for variant in product.variants %}
+            {% if variant.available %}
+
+              <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money_with_currency }}</option>
+
+            {% else %}
+              <option disabled="disabled">
+                {{ variant.title }} - {{ 'products.product.sold_out' | t }}
+              </option>
+            {% endif %}
+          {% endfor %}
+        </select>
+
+        {% if settings.product_quantity_enable %}
+          <label for="quantity" class="quantity-selector">{{ 'products.product.quantity' | t }}</label>
+          <input type="number" id="quantity" name="quantity" value="1" min="1" class="quantity-selector">
+        {% endif %}
+
+        <button type="submit" name="add" id="addToCart" class="btn buy-btn my-btn">
+          <span class="icon"></span>
+          <span id="addToCartText xxc">{{ 'products.product.add_to_cart' | t }}</span>
+        </button>
+        
+        {% include 'ShopList' %}
+        
+        {% if settings.product_quantity_message %}
+          <span id="variantQuantity" class="variant-quantity"></span>
+        {% endif %}
+      </form>
+
+      
+
+    </div>
+
+
+    <div style="padding-top:40px" class="product-description rte" itemprop="description">
+      <b class="site-nav">About Product</b><br>
+      <span class="site-navs"><p>{{ product.description }}</p></span>
+    </div>
+
+  </div>
+  
+   <div class="right-side col-md-6">
+     
+      <div class="c100 p{{ sanadeeg_save | handleize}}">
+            <span style="color:#1F6E43">Save:</span>
+            <span style="color:#1F6E43" class="percent">{{ sanadeeg_save }}</span>
+                <div class="slice">
+                  <div class="bar"></div>
+                  <div class="fill"></div>
+                </div>
+         </div>
+     <div class="savings">
+      <span class="site-nav ">
+        <span style="color:#81BF40">You Save {{ sanadeeg_save }} </span></span>
+            <br>
+  
+     
+         <span style="color:#585858" class="site-nav ">
+
+        RETAIL - </span><span style="color:#81BF40"> {{ market_price }} - {{ sanadeeg_unit }}  </span>
+        <br>
+         <span style="color:#81BF40" class="site-nav ">
+        SANADEEG - {{ sanadeeg_price }}  - {{ sanadeeg_unit }} </span>
+       
+       </div>   
+         
+  </div>
+  
+</div>
+
+
+{% if settings.related_products_enable %}
+  {% assign grid_item_width = 'large--one-fifth medium--one-third small--one-half' %}
+  {% include 'related-products' %}
+{% endif %}
+
+{% if settings.product_reviews_enable %}
+  <hr>
+  <div id="shopify-product-reviews" data-id="{{ product.id }}">{{ product.metafields.spr.reviews }}</div>
+{% endif %}
+
+{{ 'option_selection.js' | shopify_asset_url | script_tag }}
+<script>
+
+  // Pre-loading product images, to avoid a lag when a thumbnail is clicked, or
+  // when a variant is selected that has a variant image.
+  Shopify.Image.preload({{ product.images | json }}, 'large');
+
+  var selectCallback = function(variant, selector) {
+
+    var $addToCart = $('#addToCart'),
+        $productPrice = $('#productPrice'),
+        $comparePrice = $('#comparePrice'),
+        $variantQuantity = $('#variantQuantity'),
+        $quantityElements = $('.quantity-selector, label + .js-qty'),
+        $addToCartText = $('#addToCartText'),
+        $featuredImage = $('#productPhotoImg');
+
+    if (variant) {
+      // Update variant image, if one is set
+      // Call timber.switchImage function in shop.js
+      if (variant.featured_image) {
+        var newImg = variant.featured_image,
+            el = $featuredImage[0];
+        $(function() {
+          Shopify.Image.switchImage(newImg, el, timber.switchImage);
+        });
+      }
+
+      // Select a valid variant if available
+      if (variant.available) {
+        // We have a valid product variant, so enable the submit button
+        $addToCart.removeClass('disabled').prop('disabled', false);
+        $addToCartText.html({{ 'products.product.add_to_cart' | t | json }});
+        $quantityElements.show();
+
+        // Show how many items are left, if below 10
+        {% if settings.product_quantity_message %}
+        if (variant.inventory_management) {
+          if (variant.inventory_quantity < 10 && variant.inventory_quantity > 0) {
+            $variantQuantity.html({{ 'products.product.only_left' | t: count: '1' | json }}.replace('1', variant.inventory_quantity)).addClass('is-visible');
+          } else if (variant.inventory_quantity <= 0 && variant.incoming) {
+            $variantQuantity.html({{ 'products.product.will_not_ship_until' | t: date: '[date]' | json }}.replace('[date]', variant.next_incoming_date)).addClass('is-visible');
+          } else {
+            $variantQuantity.removeClass('is-visible');
+          }
+        }
+        else {
+          $variantQuantity.removeClass('is-visible');
+        }
+        {% endif %}
+
+      } else {
+        // Variant is sold out, disable the submit button
+        $addToCart.addClass('disabled').prop('disabled', true);
+        $addToCartText.html({{ 'products.product.sold_out' | t | json }});
+        $variantQuantity.removeClass('is-visible');
+        if (variant.incoming) {
+          $variantQuantity.html({{ 'products.product.will_be_in_stock_after' | t: date: '[date]' | json }}.replace('[date]', variant.next_incoming_date)).addClass('is-visible');
+        }
+        else {
+          $variantQuantity.addClass('hide');
+        }
+        $quantityElements.hide();
+      }
+
+      // Regardless of stock, update the product price
+      var customPrice = timber.formatMoney( Shopify.formatMoney(variant.price, "{{ shop.money_format }}") );
+      var a11yPrice = Shopify.formatMoney(variant.price, "{{ shop.money_format }}");
+      var customPriceFormat = ' <span aria-hidden="true">' + customPrice + '</span>';
+          customPriceFormat += ' <span class="visually-hidden">' + a11yPrice + '</span>';
+      {% if settings.product_show_compare_at_price %}
+        if (variant.compare_at_price > variant.price) {
+          var comparePrice = timber.formatMoney(Shopify.formatMoney(variant.compare_at_price, "{{ shop.money_format }}"));
+          var a11yComparePrice = Shopify.formatMoney(variant.compare_at_price, "{{ shop.money_format }}");
+
+          customPriceFormat = ' <span aria-hidden="true">' + customPrice + '</span>';
+          customPriceFormat += ' <span aria-hidden="true"><s>' + comparePrice + '</s></span>';
+          customPriceFormat += ' <span class="visually-hidden"><span class="visually-hidden">{{ "products.general.regular_price" | t }}</span> ' + a11yComparePrice + '</span>';
+          customPriceFormat += ' <span class="visually-hidden"><span class="visually-hidden">{{ "products.general.sale_price" | t }}</span> ' + a11yPrice + '</span>';
+        }
+      {% endif %}
+      $productPrice.html(customPriceFormat);
+
+      // Also update and show the product's compare price if necessary
+      if ( variant.compare_at_price > variant.price ) {
+        var priceSaving = timber.formatSaleTag( Shopify.formatMoney(variant.compare_at_price - variant.price, "{{ shop.money_format }}") );
+        {% comment %}
+        priceSaving += ' (' + ( (variant.compare_at_price - variant.price)*100/(variant.compare_at_price) ).toFixed(0) + '%)';
+        {% endcomment %}
+        $comparePrice.html({{ 'products.general.save_html' | t: saved_amount: '[$]' | json }}.replace('[$]', priceSaving)).show();
+      } else {
+        $comparePrice.hide();
+      }
+
+    } else {
+      // The variant doesn't exist, disable submit button.
+      // This may be an error or notice that a specific variant is not available.
+      $addToCart.addClass('disabled').prop('disabled', true);
+      $addToCartText.html({{ 'products.product.unavailable' | t | json }});
+      $variantQuantity.removeClass('is-visible');
+      $quantityElements.hide();
+    }
+  };
+
+  jQuery(function($) {
+    var product = {{ product | json }};
+    {% if settings.product_quantity_message %}
+      {% for variant in product.variants %}
+        product.variants[{{ forloop.index0}}].incoming = {{ variant.incoming | default: false }};
+        product.variants[{{ forloop.index0}}].next_incoming_date = {{ variant.next_incoming_date | date: format: 'month_day_year' | json }};
+      {% endfor %}
+    {% endif %}
+
+    new Shopify.OptionSelectors('productSelect', {
+      product: product,
+      onVariantSelected: selectCallback,
+      enableHistoryState: true
+    });
+
+    // Add label if only one product option and it isn't 'Title'. Could be 'Size'.
+    {% if product.options.size == 1 and product.options.first != 'Title' %}
+      $('.selector-wrapper:eq(0)').prepend('<label>{{ product.options.first | escape }}</label>');
+    {% endif %}
+
+    // Hide selectors if we only have 1 variant and its title contains 'Default'.
+    {% if product.variants.size == 1 and product.variants.first.title contains 'Default' %}
+      $('.selector-wrapper').hide();
+    {% else %}
+      $('#variantBreak').removeClass('hr--clear');
+    {% endif %}
+  });
+</script>
+
+{% if settings.product_image_zoom_enable %}
+  {{ 'jquery.zoom.min.js' | asset_url | script_tag }}
+{% endif %}
+
+
+<style>
+  .new-grid-item{
+   display: table-cell;
+    vertical-align: middle;
+    padding-top:100px;
+    width:32%;
+  }
+  .full{
+   width:100%;
+    float:left;
+  }
+  .left-side{
+   width:50%;
+    float:left;
+    padding-bottom: 30px;
+    padding-left: 100px;
+    padding-right:50px;
+  }
+  .right-side{
+   width:27%;
+    float:right;
+        padding: 60px 0 0 35px;
+  }
+  span.site-nav{
+    margin-left:0px;
+    line-height:34px;
+  }
+  b.site-nav{
+    margin-left:0px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+ 
+
+  
+</style>
+<script>
+  var text=jQuery('.percent').text();
+  if(text == "")
+  {
+    	jQuery('.right-side').css('display','none');
+  }
+</script>

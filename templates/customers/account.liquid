@@ -1,0 +1,279 @@
+<div class="grid">
+
+  <div class="grid-item  medium-down--one-whole">
+    <h2 class="h4" >{{ 'customer.orders.title' | t }}</h2>
+    <h5 class="my-order-history">Lifetime Savings :<span id="total_save"></span> Dhs</h5>
+    {% paginate customer.orders by 20 %}
+     <img id="loader" style="display:none" src="{{ settings.app_url_link }}/img/balls_loading.gif"> 
+    {% if customer.orders.size != 0 %}
+<div class="order-table">
+      <table class="full responsive-table" id="order_table">
+        <thead>
+          <tr>
+            <th style="text-align:center">{{ 'customer.orders.order_number' | t }}</th>
+            <th style="text-align:center">{{ 'customer.orders.date' | t }}</th>
+            <th style="text-align:center">Status</th>
+            <th style="text-align:center">Sub Total</th>
+            <th style="text-align:center">Shipping</th>
+            <th style="text-align:center">{{ 'customer.orders.total' | t }}</th>
+            <th style="text-align:center">Saved</th>
+            <th style="text-align:center">Additional Discounts<br>/Rewards</th>
+            <th style="text-align:center">Action</th>
+          </tr>
+        </thead>
+        <tbody id="tableD">
+        </tbody>
+      </table>
+</div>           
+
+    {% else %}
+
+      <p>{{ 'customer.orders.none' | t }}</p>
+
+    {% endif %}
+
+    {% if paginate.pages > 1 %}
+    <div class="text-center">
+      {% include 'pagination-custom' %}
+    </div>
+    {% endif %}
+    {% endpaginate %}
+  </div>
+ <input type="hidden" value="{{ customer.id }}" id="customerId" >
+  <input type="hidden" value="{{ customer.email }}" id="customerEmail" >
+    <input type="hidden" value="{{ customer.name }}" id="customerName" >
+
+  <!--div class="grid-item one-third medium-down--one-whole">
+    <h2 class="h4">{{ 'customer.account.details' | t }}</h2>
+
+    <h3 class="h5">{{ customer.name }}</h3>
+    
+    {% if customer.default_address != nil %}
+      <p>
+      {{ customer.default_address.address1 }}<br>
+
+      {% if customer.default_address.address2 != "" %}
+        {{ customer.default_address.address2 }}<br>
+      {% endif %}
+
+      {% if customer.default_address.city != "" %}
+        {{ customer.default_address.city }}<br>
+      {% endif %}
+
+      {% if customer.default_address.province_code != "" %}
+        {{ customer.default_address.province_code | upcase }}<br>
+      {% endif %}
+
+      {% if customer.default_address.zip != "" %}
+        {{ customer.default_address.zip | upcase }}<br>
+      {% endif %}
+
+      {% if customer.default_address.country != "" %}
+        {{ customer.default_address.country }}<br>
+      {% endif %}
+
+      {% if customer.default_address.phone != "" %}
+        {{ customer.default_address.phone }}
+      {% endif %}
+
+      </p>
+
+    {% endif %}
+
+    <p><a href="/account/addresses">{{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})</a></p>
+  </div-->
+
+</div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<script>
+  jQuery(document).ready(function(){
+    	
+   	
+    var id=jQuery('#customerId').val();
+    var emailId=jQuery('#customerEmail').val();
+    var customerName=jQuery('#customerName').val();
+    var link=localStorage.getItem('link');
+    var allOrders=localStorage.getItem('orderskk');
+    var lifetime_savings=localStorage.getItem('total_save');
+    
+    if(lifetime_savings != null){
+    
+   
+    jQuery('#total_save').text(lifetime_savings);
+    jQuery('#lifetime_top_price').text(lifetime_savings +' Dhs');
+    }
+    else
+    {	
+       jQuery('#total_save').text('0');
+       jQuery('#lifetime_top_price').text('0 Dhs');
+    }
+    
+    if(allOrders != null)
+    {
+     jQuery('#tableD').html(allOrders);
+      jQuery.ajax({
+        method:'POST',
+        url: '{{ settings.app_url_link }}/proxy/getOrderskk.php',
+        data:{id:id},
+        success:function(resp){
+         var response=resp.split("|");
+         
+          jQuery('#tableD').html(response[0]);
+          
+          
+          localStorage.setItem('orderskk',response[0]);
+          if(response[1]=="")
+          {
+           jQuery('#lifetime_top_price').text('0 Dhs');
+            localStorage.setItem('total_save','0');
+            jQuery('#total_save').text('0');
+          }
+          else
+          {
+             jQuery('#lifetime_top_price').text(response[1]+' Dhs');
+            localStorage.setItem('total_save',response[1]);
+            jQuery('#total_save').text(response[1]);
+          }
+      }
+    });
+      
+    }
+    else
+    {
+        jQuery('#loader').css('display','block');
+        jQuery.ajax({
+        method:'POST',
+        url: '{{ settings.app_url_link }}/proxy/getOrderskk.php',
+        data:{id:id},
+        success:function(resp){
+        var response=resp.split("|");
+          jQuery('#loader').css('display','none');
+          jQuery('#tableD').html(response[0]);
+          localStorage.setItem('orderskk',response[0]);
+          
+          if(response[1]=="")
+          {
+           jQuery('#lifetime_top_price').text('0 Dhs');
+           localStorage.setItem('total_save','0');
+           jQuery('#total_save').text('0');
+          }
+          else
+          {
+            jQuery('#lifetime_top_price').text(response[1]+' Dhs');
+            localStorage.setItem('total_save',response[1]);
+            jQuery('#total_save').text(response[1]);
+          }
+      }
+    });
+    }
+    
+    
+    
+     jQuery.ajax({
+      	
+      method:'POST',
+      url: '{{ settings.app_url_link }}/proxy/addUserInDb.php',
+      data:{id:id,email:emailId,customerName:customerName,link:link},
+      success:function(resp){
+      	if(resp!=0)
+        {
+          jQuery('#link').text(resp);
+          jQuery('#referSpan').css('display','block');
+          localStorage.setItem('referSpan',resp);
+        }
+         //jQuery('#loader').css('display','none');
+    }
+      
+    });
+  
+  var new_local = localStorage.getItem('new_user');
+    if(new_local == 1){
+      	 window.location.href = "https://sanadeeg.com/";
+      	localStorage.removeItem('new_user');
+    }
+  
+  var user_local = localStorage.getItem('user_login');
+    if(user_local == 1){
+      	 window.location.href = "https://sanadeeg.com/";
+      	localStorage.removeItem('user_login');
+    }
+  });
+/*responsive table jquery*/ 
+  jQuery(document).ready(function(){
+  	var w_width=jQuery(window).width();
+    if(w_width < 610){
+      jQuery('.order-table > table').addClass('mobile');
+    }
+  });  
+window.onload = function () {
+  'use strict';
+
+  var i,
+    element;
+
+  //create headers for the mobile view
+  (function () {
+    var headers = document.querySelectorAll("th"),
+      index = 1,
+      columns = document.querySelectorAll("td"),
+      headerName,
+      responsiveHeader;
+
+    if (columns.length > 0) {
+      for (i = 0; i < columns.length; i += 1) {
+        if (index > headers.length) {
+          index = 1;
+        }
+        //mobile headers are actually td
+        element = columns[i];
+        headerName = document.querySelector('th:nth-of-type(' + index + ')').textContent;
+        responsiveHeader = document.createElement("td");
+
+        responsiveHeader.className = "responsive-header";
+        responsiveHeader.innerHTML = headerName;
+        element.parentNode.insertBefore(responsiveHeader, element);
+
+        index+=1;
+      }
+    }
+  }());
+
+  var tableMinWidth,
+    hasBeenSet = false;
+ 
+  //addds mobile class for table when table is larger than screen
+  function sytleTable () {
+    var tableWidth = document.querySelector('.responsive-table').offsetWidth,
+      windowWidth = window.innerWidth,
+      responsiveTables = document.getElementsByClassName('responsive-table');
+
+    if (tableWidth >= windowWidth) {
+      if (!hasBeenSet) {
+        tableMinWidth = tableWidth;
+        hasBeenSet = true;
+      }
+
+      for (i = 0; i < responsiveTables.length; i += 1) {
+        element = responsiveTables[i];
+        element.classList.add("mobile");
+      }
+
+    } else if (tableWidth >= tableMinWidth) {
+
+      for (i = 0; i < responsiveTables.length ; i += 1) {
+        element = responsiveTables[i];
+        element.classList.remove("mobile");
+      }
+
+    }
+  }
+
+  window.onresize = function () {
+    sytleTable();
+  };
+
+  sytleTable();
+}; //window.onload
+</script>

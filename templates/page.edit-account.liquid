@@ -1,0 +1,151 @@
+<style>
+	label
+  {
+   	float:left;
+    font-weight:bold
+  }
+</style>
+<img class="loader" src="{{ settings.app_url_link }}/img/balls_loading.gif">  <span class="loader">Loading .. . .</span> 
+<div class="grid">
+  <div class="grid-item large--one-third push--large--one-third text-center left-13">
+
+    <h1>Edit Account</h1>
+<span id="account_span" style="float: left; width: 100%; color: red;display:none">Update Successfully !</span>
+
+ <input type="hidden" value="{{ customer.id }}" id="customerId" >
+
+      <label for="first_name" class="">{{ 'customer.register.first_name' | t }}</label>
+      <input type="text" value="" name="customer[first_name]" id="first_name" placeholder="{{ 'customer.register.first_name' | t }}" {% if form.errors contains "first_name" %} class="error"{% endif %} autofocus>
+
+      <label for="last_name" class="">{{ 'customer.register.last_name' | t }}</label>
+      <input type="text" value="" name="customer[last_name]" id="last_name" placeholder="{{ 'customer.register.last_name' | t }}" {% if form.errors contains "last_name" %} class="error"{% endif %}>
+
+      <label for="email" class="">{{ 'customer.register.email' | t }}</label>
+      <input type="email" disabled value="" name="customer[email]" id="email" placeholder="{{ 'customer.register.email' | t }}" {% if form.errors contains "email" %} class="error"{% endif %} autocorrect="off" autocapitalize="off">
+		
+      <label class="">Phone No.</label>
+      <input type="text"   value="" name="" id="phone" placeholder="Phone Number"  autocorrect="off" autocapitalize="off" >
+
+      <p>
+        <input id="accountBtn" type="button" value="Update" class="btn">
+      </p>
+
+
+  </div>
+  
+  <div class="grid-item large--one-third push--large--one-third text-center left-23">
+
+    <h1>Change Password</h1>
+
+<span id="pass_span" style="float: left; width: 100%; color: red;display:none">Update Successfully !</span>
+ <input type="hidden" value="{{ customer.id }}" id="customerId" >
+
+      <input type="text" value="" name="customer[first_name]" id="new_password" placeholder="New Password" {% if form.errors contains "first_name" %} class="error"{% endif %} autofocus>
+
+      <input type="text" value="" name="customer[last_name]" id="confirm_password" placeholder="Confirm Password" {% if form.errors contains "last_name" %} class="error"{% endif %}>
+
+    
+      <p>
+        <input id="passBtn" type="button" value="Update" class="btn">
+      </p>
+
+
+  </div>
+
+</div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+  jQuery(document).ready(function(){
+    	
+    
+    var id=jQuery('#customerId').val();
+    	jQuery.ajax({
+          method:'POST',
+          url: '{{ settings.app_url_link }}/proxy/getCustomer.php',
+          data:{id:id},
+          success:function(resp){
+            jQuery('.loader').css('display','none');
+            var resp= resp.split('|');
+            jQuery("#first_name").val(resp[1]);
+            jQuery("#last_name").val(resp[2]);
+            jQuery("#email").val(resp[0]);
+            jQuery("#phone").val(resp[3]);
+            jQuery('.grid').css('display','block');
+            
+        }
+
+        });
+    
+    jQuery('#accountBtn').click(function(){
+      			
+    
+            var first_name=jQuery("#first_name").val();
+            var last_name=jQuery("#last_name").val();
+            var phone=jQuery("#phone").val();
+      if(phone != ""){
+          jQuery('#accountBtn').val('Loading...');
+      	jQuery.ajax({
+          method:'POST',
+          url: '{{ settings.app_url_link }}/proxy/getCustomer.php',
+          data:{id:id,first_name:first_name,last_name:last_name,phone:phone},
+          success:function(resp){
+            var resp= resp.split('|');
+            jQuery("#first_name").val(resp[1]);
+            jQuery("#last_name").val(resp[2]);
+            jQuery("#phone").val(resp[3]);
+            jQuery("#email").val(resp[0]);
+            jQuery('#accountBtn').val('Update');
+			jQuery('#account_span').css('display','block');
+			jQuery('#account_span').fadeOut(6000);
+
+            //jQuery('.grid').css('display','block');
+        }
+
+        });
+      }
+      else
+      {
+       alert('Fill the Empty fields'); 
+      }
+      return false;
+    });
+    
+    
+     jQuery('#passBtn').click(function(){
+      			
+   
+            var new_password=jQuery("#new_password").val();
+            var confirm_password=jQuery("#confirm_password").val();
+       if(new_password != ""){
+            jQuery('#passBtn').val('Loading...');
+      	jQuery.ajax({
+          method:'POST',
+          url: '{{ settings.app_url_link }}/proxy/getCustomer.php',
+          data:{id:id,new_password:new_password,confirm_password:confirm_password},
+          success:function(resp){            
+            var resp= resp.split('|');
+            jQuery("#first_name").val(resp[1]);
+            jQuery("#last_name").val(resp[2]);
+            jQuery("#phone").val(resp[3]);
+            jQuery("#email").val(resp[0]);
+            jQuery('#passBtn').val('Update');
+		    jQuery("#new_password").val("");
+            jQuery("#confirm_password").val("");
+            
+			jQuery('#pass_span').css('display','block');
+			jQuery('#pass_span').fadeOut(6000);
+            //jQuery('.grid').css('display','block');
+        }
+
+        });
+       }
+       else
+       {
+        alert('Fill the Empty Fields'); 
+       }
+      return false;
+    });
+    
+  });
+  
+  </script>

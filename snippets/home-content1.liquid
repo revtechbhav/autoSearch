@@ -1,0 +1,16 @@
+{% if settings.new_banner_enable %}
+  <div class="rte new-phn-banner">
+    
+      	<img src="{{ 'new-banner.jpg' | asset_url }}"/>
+      
+    <div class="content-area">
+      <h1 class="top-content">{{ settings.main-heading }}</h1>
+      <h4 class="small-content">{{ settings.short-heading }}</h4>
+      <div class="links-section">
+        <a href="{{ settings.app_link }}"><img src="{{ 'app-store.png' | asset_url }}"/></a>
+        <a href="{{ settings.google_link }}"><img src="{{ 'google-app.png' | asset_url }}"/></a>
+      </div>
+    </div>
+  </div>
+{% endif %}
+

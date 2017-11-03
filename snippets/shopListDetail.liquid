@@ -1,0 +1,85 @@
+<div id="shoppinglistDetailDummy">
+  <div class="ShopList-row" id="productArea">
+      <div class="grid">
+
+        <div class="grid-item large--eight-twelfths">
+          <div class="grid" id="">
+
+            <div class="grid-item one-third large--one-quarter">
+              <a href="{{ item.url }}" class="shoplist-image">
+                <img src="">
+              </a>
+            </div>
+		
+            <div class="grid-item one-third large--two-quarter">
+              <div class="grid">
+                <div class="grid-item shoplisttitle">  
+                  <a href="">
+                   
+                  </a>
+                </div> 
+                <div class="sale-tag-cart grid-item">
+                  <div class="shoplistprice"></div>
+                </div>
+         	  </div>
+            </div>
+          </div>
+        </div>
+        
+      
+
+        <div class="grid-item large--four-twelfths medium--two-thirds push--medium--one-third">
+          <div class="grid" style="display:none;">
+
+            <div class="grid-item">
+              <input type="number" name="updates[]" id="updates_{{ item.key }}" data-id="{{ item.key }}" value="{{ item.quantity }}" min="0" data-line="{{ forloop.index }}">
+            </div>
+          </div>
+          <div class="grid-item one-third large--two-quarter">
+            {% include 'add-to-cart' %}
+          </div>  
+          <div class="grid-item one-third large--two-quarter">
+            <div class="outofstock"></div>
+          </div>  
+          
+            <div class="grid-item one-third large--two-quarter">
+               <div class="remove-list"> 
+                  <a href="javascript:void(0);" class="icon-fallback-text remove1" onclick="">
+                    <span class="remove-ajax">Remove</span>
+                  </a>
+                </div> 
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  
+</div>  
+<div id="shoppinglistDetail">
+  
+</div>
+<h2 id="outofstock">Out Of Stock Products </h2>
+
+<div id="shoppinglistDetailstock">
+  
+</div>
+
+<style>
+
+  #shoppinglistDetailDummy {
+    display:none;
+  }
+  .shoplist-image img {
+    width: 50% !important;
+}
+  #productArea {
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+  #shoppinglistDetail{
+    min-height:500px;
+  } 
+  #addToCartText {
+    color:#fff;
+  }
+</style>  

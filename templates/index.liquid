@@ -1,0 +1,51 @@
+<style>
+	.main-content
+  {
+    top:0px !important;
+  }
+</style>
+{% assign page = pages.frontpage %}
+{% assign number_of_index_sections = 0 %}
+
+{% unless settings.home_section_1 == blank %}
+  {% assign number_of_index_sections = number_of_index_sections | plus: 1 %}
+  {% include settings.home_section_1 %}
+{% endunless %}
+
+{% unless settings.home_section_2 == blank %}
+  {% unless number_of_index_sections == 0 %}
+  <hr>
+  {% endunless %}
+  {% assign number_of_index_sections = number_of_index_sections | plus: 1 %}
+  {% include settings.home_section_2 %}
+{% endunless %}
+
+{% unless settings.home_section_3 == blank %}
+  {% unless number_of_index_sections == 0 %}
+  <hr>
+  {% endunless %}
+  {% assign number_of_index_sections = number_of_index_sections | plus: 1 %}
+  {% include settings.home_section_3 %}
+{% endunless %}
+
+{% unless settings.home_section_4 == blank %}
+  {% unless number_of_index_sections == 0 %}
+  <hr>
+  {% endunless %}
+  {% assign number_of_index_sections = number_of_index_sections | plus: 1 %}
+  {% include settings.home_section_4 %}
+{% endunless %}
+{% unless settings.home_section_5 == blank %}
+  {% unless number_of_index_sections == 0 %}
+  <hr>
+  {% endunless %}
+  {% assign number_of_index_sections = number_of_index_sections | plus: 1 %}
+  {% include settings.home_section_5 %}
+{% endunless %}
+{% unless settings.home_section_6 == blank %}
+  {% unless number_of_index_sections == 0 %}
+  <hr>
+  {% endunless %}
+  {% assign number_of_index_sections = number_of_index_sections | plus: 1 %}
+  {% include settings.home_section_6 %}
+{% endunless %}

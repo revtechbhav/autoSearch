@@ -1,0 +1,134 @@
+{{ collection.handle }}
+
+{% if linklists[collection.handle].links.size > 0 %}
+    
+  {% assign number_of_links = 0 %}
+    
+  <div class="grid-uniform clearfix">
+
+    {% for link in linklists[collection.handle].links %}
+
+      {% if link.type == 'collection_link' %}
+
+        {% comment %}
+        If we have a collection link.
+        {% endcomment %}   
+
+        {% assign collection = link.object %}
+        {% assign number_of_links = number_of_links | plus: 1 %}
+
+        <div class="grid__item grid-item product-grid-item {{ grid_item_width }} text-center">
+          <div class="grid__image product-grid-image">
+            <a href="{{ link.url }}" class="grid-image--centered">
+            {% comment %}
+              Bring in the featured image of the first product in the collection if no collection
+              image has been uploaded for it.
+            {% endcomment %}
+            {% if collection.image %}
+              <img src="{{ collection | img_url: image_size }}" alt="{{ link.title | escape }}">
+            {% else %}
+              {% assign product = collection.products.first %}
+              <img src="{{ product | img_url: image_size }}" alt="{{ link.title | escape }}">
+            {% endif %}
+            </a>
+          </div>
+          <p class="collection-grid__item-title">
+            <a href="{{ link.url }}" class="collection-item__title">{{ link.title }}</a>
+          </p>
+        </div>
+          
+{% endif %}
+{% endfor %}   
+{% endif %}    
+
+{% paginate collection.products by 20 %}
+
+{% include 'breadcrumb' %}
+
+{% assign has_sidebar = false %}
+{% if collection.all_tags.size > 0 %}
+  {% assign has_sidebar = true %}
+{% endif %}
+
+<div class="grid grid-border">
+
+  {% if has_sidebar %}
+  <aside class="sidebar grid-item large--one-fifth collection-filters" id="collectionFilters">
+    {% include 'collection-sidebar' %}
+  </aside>
+  {% endif %}
+
+  <div class="grid-item{% if has_sidebar %} large--four-fifths grid-border--left{% endif %}">
+    
+    {% if paginate.pages > 1 %}		
+    <div class="text-center up-page">{% if collection.handle == 'best-sellers' %}{% assign limits = 2 %}{% assign collectiondata = 'best-seller' %}{% endif %}{% include 'upside-pagination' %}</div>
+    {% endif %}
+
+    {% comment %}
+      Different markup if description is set
+    {% endcomment %}
+    {% if collection.description != blank %}
+      <header class="section-header">
+        <h1 class="section-header--title h1">{{ collection.title }}</h1>
+        <div class="rte rte--header">
+          {{ collection.description }}
+        </div>
+      </header>
+      <hr{% if has_sidebar %} class="hr--offset-left"{% endif %}>
+      <div class="section-header">
+        <div class="section-header--right">
+          {% if collection.handle == 'best-sellers' %} {% else %}  {% include 'collection-sorting' %} {% endif %}
+          {% include 'collection-views' %}
+          {% include 'toggle-filters' %}
+        </div>
+      </div>
+    {% else %}
+    <header class="section-header">
+      <h1 class="section-header--title section-header--left h1">{{ collection.title }}</h1>
+      <div class="section-header--right">
+         {% if collection.handle == 'best-sellers' %} {% else %}  {% include 'collection-sorting' %} {% endif %}
+        {% include 'collection-views' %}
+        {% include 'toggle-filters' %}
+      </div>
+    </header>
+    {% endif %}
+
+    <div class="grid-uniform">
+
+      {% for product in collection.products %}
+
+        {% if has_sidebar %}
+          {% assign grid_item_width = 'large--one-quarter medium--one-third small--one-half' %}
+        {% else %}
+          {% assign grid_item_width = 'large--one-fifth medium--one-third small--one-half' %}
+        {% endif %}
+        {% include 'product-grid-item' %}
+      	
+
+      {% else %}
+
+        <div class="grid-item">
+        <!--  <p>{{ 'collections.general.no_matches' | t }}</p> --> We are searching for best deals for you, stay tuned.  
+        </div>
+
+      {% endfor %}
+
+    </div>
+
+  </div>
+
+  {% if paginate.pages > 1 %}
+  <div class="grid-item pagination-border-top">
+    <div class="grid">
+      <div class="grid-item{% if has_sidebar %} large--four-fifths push--large--one-fifth{% endif %}">
+          <div class="text-center">
+            {% if collection.handle == 'best-sellers' %}{% assign limits = 2 %}{% assign collectiondata = 'best-seller' %}{% endif %}{% include 'pagination-custom' %}
+          </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+</div>
+
+{% endpaginate %}

@@ -1,0 +1,105 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
+{% if customer %}
+<style>
+	.main-content
+  {
+   	padding:0 0 20px 0; 
+    top:150px;
+  }
+</style>
+<img style="width:100%" src="{{ 'cash_rewards.png' | asset_url }}">
+<div class="grid inner-page-top">
+
+  <div class="grid-item large--two-thirds push--large--one-sixth">
+
+    <h1 style=" color: #fa9f1b;
+    font-size: 20px;
+    font-weight: bold;margin-bottom:18px">My Cash Rewards</h1>
+    <span style="font-size: 18px;
+    font-weight: bold;">Track and use your Sanadeeg Cash Rewards: </span>
+ <input type="hidden" value="{{ customer.id }}" id="customerId" >
+
+    <div style="margin-top:12px;" class="rte">
+           <img id="loader" src="{{ settings.app_url_link }}/img/balls_loading.gif"> 
+      <table class="table">
+        <thead>
+          <th style="text-align:center">No.</th>
+          <th style="text-align:center">Reward Code</th>
+          <th style="text-align:center">Value</th>
+        </thead>
+        <tbody id="tableD">
+         	
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <b>How it Works</b><br>
+You can simply copy the reward code that you wish to use in your next order and use it as a discount code at checkout.<br>
+<em><u><a href="https://sanadeeg.com/pages/our-programs" style="color: #2e74b5;">Learn more about our rewards programs</a></u></em>
+
+      <br>
+      <br>
+      <p>
+        <b>* Note: </b>Your Reward code with the highest value will be selected automatically for your next order, but you can select any of the other reward codes above and save the higher one for a future order if you wish.
+      </p>
+    </div>
+  </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<script>
+  jQuery(document).ready(function(){
+    	
+    var id=jQuery('#customerId').val();
+    jQuery.ajax({
+      	
+      method:'POST',
+      url: '{{ settings.app_url_link }}/proxy/getDiscounts.php',
+      data:{id:id},
+      success:function(resp){
+        jQuery('#loader').css('display','none');
+        jQuery('#tableD').html(resp);
+    }
+      
+    });
+    
+     var top_header= localStorage.getItem('top_header');
+    if(top_header == 1)
+    {
+      
+      //jQuery('.main-content, .site-footer').css('top','150px'); 
+      jQuery('.index-slider').css('margin-top','153px'); 
+    }
+    else
+    {
+        var customerId={{ customer.id }};  
+     jQuery.ajax({
+       				 
+       method:'POST',
+       url: '{{ settings.app_url_link }}/proxy/firstOrder.php',
+       data: {customerId:customerId},
+       success:function(resp){
+        
+         if(resp==0)
+         {
+           jQuery('.top-stick-head').css('display','block'); 
+           //jQuery('.main-content, .site-footer').css('top','188px');
+         }
+         else
+         {
+           localStorage.setItem('top_header',1);
+           
+         }
+          
+       }
+    });
+      
+    }
+  });
+  
+</script>
+{% else %}
+<script>
+ window.location.href="https://sanadeeg.com/account/login?r=1";
+  </script>
+{% endif %}

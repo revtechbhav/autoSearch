@@ -1,0 +1,224 @@
+<div class="grid">
+
+  <div class="grid-item large--one-third push--large--one-third text-center">
+
+    <h1 style="margin-bottom:0px;">{{ 'customer.register.title' | t }}</h1>
+    <div class="note-text">
+      All fields are mandatory.<br>
+      Password must be minimum 5 characters.
+    </div>
+    <div class="form-custom-error">
+      <ul class="disc" id="custom_ul">
+       
+      </ul>
+    </div>
+    {% form 'create_customer' %}
+
+      {% include 'form-errors-custom' %}
+
+      <label for="first_name" class="hidden-label">{{ 'customer.register.first_name' | t }}</label>
+      <input type="text" value="" name="customer[first_name]" id="first_name" placeholder="{{ 'customer.register.first_name' | t }}" {% if form.errors contains "first_name" %} class="error"{% endif %} autofocus>
+
+      <label for="last_name" class="hidden-label">{{ 'customer.register.last_name' | t }}</label>
+      <input type="text" value="" name="customer[last_name]" id="last_name" placeholder="{{ 'customer.register.last_name' | t }}" {% if form.errors contains "last_name" %} class="error"{% endif %}>
+
+      <label for="email" class="hidden-label">{{ 'customer.register.email' | t }}</label>
+      <input type="email" value="" name="customer[email]" id="email" placeholder="{{ 'customer.register.email' | t }}" {% if form.errors contains "email" %} class="error"{% endif %} autocorrect="off" autocapitalize="off">
+	  <input id="confirm_email" type="email" name="customer[email]" placeholder="Confirm-Email" />
+    
+       <input id="new_phn" type="hidden" name="customer[note][phone]" />
+      <input type="tel" id="phone"  name="customer[addresses][0][phone]" placeholder="Phone No." >
+    
+      <label for="password" class="hidden-label">{{ 'customer.register.password' | t }}</label>
+      <input type="password" value="" name="customer[password]" id="create_password" placeholder="{{ 'customer.register.password' | t }}" {% if form.errors contains "password" %} class="error"{% endif %}>
+    
+    <label for="password_confirmation" class="hidden-label">Password Confirmation</label> 
+    <input id="confirm_password" type="password" name="customer[password]" placeholder="Confirm-Password"/>  
+    <p>
+        <input type="button" value="{{ 'customer.register.submit' | t }}" class="btn">
+      </p>
+      {{ 'customer.register.or' | t }} <a href="{{ shop.url }}">{{ 'customer.register.cancel' | t }}</a>
+
+    {% endform %}
+
+  </div>
+
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+  
+    jQuery(document).ready(function(){
+		
+      localStorage.clear();
+        jQuery('.btn').click(function(){
+          var url = window.location.href; 
+          var id=url.split('=');
+          var link=id[1];
+          if(link != undefined)
+          {
+           localStorage.setItem('link',link);
+          }
+          
+          localStorage.setItem('new_user',1);
+          var phone = jQuery('#phone').val();
+        
+          localStorage.setItem('phone_num', phone);
+        /*form validate*/
+          var f_name = jQuery('#first_name').val();
+          var l_name = jQuery('#last_name').val();
+          var email = jQuery('#email').val();
+          var phone = jQuery('#phone').val();
+          var pasword = jQuery('#create_password').val();
+          var c_email = jQuery('#confirm_email').val();
+          var c_pass = jQuery('#confirm_password').val();
+          
+          var error_fname = '';
+          var error_lname = '';
+          var error_email = '';
+          var error_phone = '';
+          var error_pass = '';
+          var confirm_email_err = '';
+          var confirm_email_pass = '';
+          var errorMessage = '';
+          if(f_name==''){
+          	error_fname = 'error';
+            jQuery('.form-custom-error').css('display','block');
+           	errorMessage ="<li>The <strong>First Name</strong> can't be blank.</li>";
+           	jQuery('#first_name').addClass('input-err');
+          }else{
+            jQuery('#first_name').removeClass('input-err');
+            error_fname = '';
+          }
+          
+          if(l_name==''){
+          	error_lname = 'error';
+            jQuery('.form-custom-error').css('display','block');
+           errorMessage +="<li>The <strong>Last Name</strong> can't be blank.</li>";
+           jQuery('#last_name').addClass('input-err');
+          }else{
+            jQuery('#last_name').removeClass('input-err');
+            error_lname = '';
+          }
+          
+          if(email==''){
+          	error_email = 'error';
+            jQuery('.form-custom-error').css('display','block');
+           errorMessage += "<li>The <strong>Email</strong> can't be blank.</li>";
+           jQuery('#email').addClass('input-err');
+           
+            if(jQuery('#confirm_email').val() == ''){
+           		jQuery('#confirm_email').addClass('input-err');
+            }
+          }else{
+                 if (email != c_email){
+                          jQuery('.form-custom-error').css('display','block !important');
+                          jQuery("#custom_ul").append("<li>Your <strong>Email</strong> Doesn't match.</li>");
+                   			errorMessage += "<li>Your <strong>Email</strong> Doesn't match.</li>";
+                          jQuery('#email').addClass('input-err');
+                          jQuery('#confirm_email').addClass('input-err');
+                   			error_email = 'error';
+                    }else{
+                          //jQuery('.form-custom-error').css('display','none');
+                          jQuery('#email').removeClass('input-err');
+                          jQuery('#confirm_email').removeClass('input-err');
+                      		error_email = '';
+                    }
+
+          }
+          
+          
+          if(phone==''){
+          	error_phone = 'error';
+            jQuery('.form-custom-error').css('display','block');
+           errorMessage += "<li>The <strong>Phone</strong> can't be blank.</li>";
+           jQuery('#phone').addClass('input-err');
+          }else{
+            jQuery('#phone').removeClass('input-err');
+            jQuery('#new_phn').val(phone);
+            error_phone = '';
+          }
+          
+         if(pasword==''){
+          	error_pass = 'error';
+            jQuery('.form-custom-error').css('display','block');
+            errorMessage += "<li>The <strong>Password</strong> can't be blank.</li>";
+            jQuery('#create_password').addClass('input-err');
+            if(jQuery('#confirm_password').val() == ''){
+           		jQuery('#confirm_password').addClass('input-err');
+            }
+          }else{
+            if(pasword.length < 5){
+              error_pass = 'error';
+              jQuery('.form-custom-error').css('display','block');
+           	  errorMessage += "<li>The <strong>Password</strong> is too short (minimum is 5 characters)</li>";
+              jQuery('#create_password').addClass('input-err');
+              if(c_pass.length< 5){
+              	jQuery('#confirm_password').addClass('input-err');
+              }
+            }else{
+                  if (pasword != c_pass){
+                      jQuery('.form-custom-error').css('display','block');
+                      jQuery("#custom_ul").append("<li>Your <strong>Password</strong> Doesn't match.</li>");
+                       errorMessage += "<li>Your <strong>Password</strong> Doesn't match.</li>";
+                      jQuery('#create_password').addClass('input-err');
+                      jQuery('#confirm_password').addClass('input-err');
+                    error_pass = 'error';
+                }else{
+                      jQuery('.form-custom-error').css('display','none');
+                      jQuery('#create_password').removeClass('input-err');
+                      jQuery('#confirm_password').removeClass('input-err');
+                  error_pass = '';
+                }
+
+     
+            }
+          }
+         
+          
+          
+          if(errorMessage!=''){
+            jQuery('.form-custom-error').css('display','block');
+            jQuery("#custom_ul").html(errorMessage);
+          }
+          
+          
+          
+          if(error_fname=='' && error_lname=='' && error_email=='' && error_phone=='' && error_pass =='')
+          {
+            jQuery('#create_customer').prop('disabled', 'false');
+            jQuery('#create_customer').submit();
+          }else{
+            jQuery('#create_customer').prop('disabled', 'true');
+            return false;
+          }
+          
+          
+        
+        	
+      });
+      
+      
+      /*for phone number*/
+      jQuery("#phone").keydown(function (e) {
+        // Allow: backspace, delete, tab, escape, enter and .
+        if (jQuery.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+             // Allow: Ctrl+A
+             (e.keyCode == 65 && e.ctrlKey === true) ||
+             // Allow: Ctrl+C
+             (e.keyCode == 67 && e.ctrlKey === true) ||
+             // Allow: Ctrl+X
+             (e.keyCode == 88 && e.ctrlKey === true) ||
+             // Allow: home, end, left, right
+             (e.keyCode >= 35 && e.keyCode <= 39)) {
+                 // let it happen, don't do anything
+             return;
+         }
+        // Ensure that it is a number and stop the keypress
+        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+            e.preventDefault();
+        }
+    });
+      
+      
+});
+</script>

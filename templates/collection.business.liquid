@@ -1,0 +1,157 @@
+{% paginate collection.products by 20 %}
+
+
+{% assign has_sidebar = false %}
+{% if collection.all_tags.size > 0 %}
+  {% assign has_sidebar = true %}
+{% endif %}
+  {{ 'nivo-slider.css' | asset_url | stylesheet_tag }}
+   {{ 'default.css' | asset_url | stylesheet_tag }}
+  {{ 'jquery.nivo.slider.js' | asset_url | script_tag }}
+<script type="text/javascript">
+  jQuery(window).load(function() {
+
+    jQuery('#slider-fine').nivoSlider({
+      pauseTime: 6000,
+    });
+
+
+  });
+  
+    jQuery(document).ready(function() {
+
+    jQuery('.custom-collection-cont').closest('.wrapper.main-content').addClass('fine-store');
+
+
+  });
+
+</script>
+
+<div class="grid grid-border">
+
+	<div class="custom-collection-cont">
+      <div class="custom-main-banner">
+        <img src="{{ 'Fine_TopBanner.jpg' | asset_url }}">
+
+        <div class="slider-wrapper theme-default">
+            <div id="slider-fine" class="nivoSlider">
+              
+                <img src="{{ 'Tissue.jpg' | asset_url }}" data-transition="slideInRight"  data-thumb="{{ 'Tissue.jpg' | asset_url }}" alt="" />
+              
+				<img src="{{ 'Kitchen.jpg' | asset_url }}"  data-transition="slideInRight" data-thumb="{{ 'Kitchen.jpg' | asset_url }}" alt="" />
+              
+                <img src="{{ 'Toilet.jpg' | asset_url }}" data-transition="slideInRight"  data-thumb="{{ 'Toilet.jpg' | asset_url }}" alt="" />  
+
+                <img src="{{ 'Baby.jpg' | asset_url }}" data-transition="slideInRight"  data-thumb="{{ 'Baby.jpg' | asset_url }}" alt="" />
+              
+                <img src="{{ 'Adult.jpg' | asset_url }}" data-transition="slideInRight"  data-thumb="{{ 'Adult.jpg' | asset_url }}" alt="" />        
+              
+            </div>
+        </div>
+
+      </div>
+      <div class="custom-link-cont">
+        
+        <div class="custom-link-img">
+          <a href="https://sanadeeg.com/collections/fine-tissue#pro"><img src="{{ 'Fine_Square-facial-tissue.jpg' | asset_url }}"></a>
+        </div>
+        <div class="custom-link-img">
+          <a href="https://sanadeeg.com/collections/fine-toilet#pro"><img src="{{ 'Fine_Square_Toilet.jpg' | asset_url }}"></a>
+        </div>
+        <div class="custom-link-img">
+          <a href="https://sanadeeg.com/collections/fine-towel#pro"><img src="{{ 'Fine_Square_paper-towel.jpg' | asset_url }}"></a>
+        </div>
+        <div class="custom-link-img">
+          <a href="https://sanadeeg.com/collections/fine-baby#pro"><img src="{{ 'Fine_Square_Baby.jpg' | asset_url }}"></a>
+        </div>
+        <div class="custom-link-img">
+          <a href="https://sanadeeg.com/collections/fine-care#pro"><img src="{{ 'Fine_Square_adult-diaper.jpg' | asset_url }}"></a>
+        </div>
+        <div class="custom-link-img">
+          <a href="#"><img src="{{ 'Fine_Square_No_Link.jpg' | asset_url }}"></a>
+        </div>
+        
+      </div>
+    </div>
+  
+ 
+  {% if has_sidebar %}
+  <aside class="sidebar grid-item large--one-fifth collection-filters" id="collectionFilters">
+    {% include 'collection-sidebar' %}
+  </aside>
+  {% endif %}
+
+  <div class="grid-item{% if has_sidebar %} large--four-fifths grid-border--left{% endif %}">
+    
+    {% if paginate.pages > 1 %}		
+    <div class="text-center up-page">{% include 'upside-pagination' %}</div>
+    {% endif %}
+
+    {% comment %}
+      Different markup if description is set
+    {% endcomment %}
+    {% if collection.description != blank %}
+      <header class="section-header">
+        <h1 class="section-header--title h1">{{ collection.title }}</h1>
+        <div class="rte rte--header">
+          {{ collection.description }}
+        </div>
+      </header>
+      <hr{% if has_sidebar %} class="hr--offset-left"{% endif %}>
+      <div class="section-header">
+        <div class="section-header--right">
+          {% include 'collection-sorting' %}
+          {% include 'collection-views' %}
+          {% include 'toggle-filters' %}
+        </div>
+      </div>
+    {% else %}
+    <header class="section-header">
+      <h1 class="section-header--title section-header--left h1">{{ collection.title }}</h1>
+      <div class="section-header--right">
+        {% include 'collection-sorting' %}
+        {% include 'collection-views' %}
+        {% include 'toggle-filters' %}
+      </div>
+    </header>
+    {% endif %}
+
+    <div class="grid-uniform">
+
+      {% for product in collection.products %}
+
+        {% if has_sidebar %}
+          {% assign grid_item_width = 'large--one-quarter medium--one-third small--one-half' %}
+        {% else %}
+          {% assign grid_item_width = 'large--one-fifth medium--one-third small--one-half' %}
+        {% endif %}
+        {% include 'product-grid-item' %}
+      	
+
+      {% else %}
+
+        <div class="grid-item">
+        <!--  <p>{{ 'collections.general.no_matches' | t }}</p> --> We are searching for best deals for you, stay tuned.  
+        </div>
+
+      {% endfor %}
+
+    </div>
+
+  </div>
+
+  {% if paginate.pages > 1 %}
+  <div class="grid-item pagination-border-top">
+    <div class="grid">
+      <div class="grid-item{% if has_sidebar %} large--four-fifths push--large--one-fifth{% endif %}">
+          <div class="text-center">
+            {% include 'pagination-custom' %}
+          </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+</div>
+
+{% endpaginate %}
